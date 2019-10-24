@@ -6,6 +6,6 @@ namespace ATM_1
 {
     public interface IDecoder
     {
-    	void DecodeData(RawTransponderDataEventArgs e);
+    	//void DecodeData(RawTransponderDataEventArgs e);
     }
 }
