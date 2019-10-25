@@ -5,4 +5,10 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+      <Reference Include="TransponderReceiver">
+          <HintPath>TransponderReceiver.dll</HintPath>
+      </Reference>
+  </ItemGroup>
+
 </Project>
