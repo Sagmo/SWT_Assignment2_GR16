@@ -5,6 +5,6 @@ namespace ATM_1
 {
     public interface ITrack
     {
-        void Track(IDecoder decoder);
+        public void newTrack(string tag, string xCoo, string yCoo, string altitude, string timeStamp);
     }
 }
