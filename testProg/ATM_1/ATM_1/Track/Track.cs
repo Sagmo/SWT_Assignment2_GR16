@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
+
 
 namespace ATM_1
 {
     public class Track : ITrack
     {
-        public void newTrack(string tag, string xCoo, string yCoo, string altitude, string timeStamp)
+        public Track(string tag, string xCoo, string yCoo, string altitude, string timeStamp)
         {
             Tag         = tag;
             xCoordinate = Convert.ToDouble(xCoo);
