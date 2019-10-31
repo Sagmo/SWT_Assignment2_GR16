@@ -5,9 +5,9 @@ namespace ATM_1
 {
     public interface IObjStruct
     {
-        public void Attach(ITrack flightTrack);
-        public void Detach(ITrack flightTrack);
-        public bool CheckExist(string newTag);
+        void Attach(ITrack flightTrack);
+        void Detach(ITrack flightTrack);
+        bool CheckExist(string newTag);
 
         List<ITrack> getlist();
 

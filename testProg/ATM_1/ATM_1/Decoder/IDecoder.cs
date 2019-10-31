@@ -10,7 +10,7 @@ namespace ATM_1
     {
     	//void DecodeData(ITrack track, RawTransponderDataEventArgs e);
         //void DecoderEventHandler(); 
-        public void DecodeEventHandler(object sender, RawTransponderDataEventArgs e);
-        public event EventHandler<DecoderEventArgs> DecodeEvent;
+        void DecodeEventHandler(object sender, RawTransponderDataEventArgs e);
+        event EventHandler<DecoderEventArgs> DecodeEvent;
     }
 }
