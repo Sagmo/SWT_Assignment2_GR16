@@ -20,7 +20,6 @@ namespace ATM_1
         
         public void DecodeEventHandler(object sender, RawTransponderDataEventArgs e)
         {
-            // TODO Empty objctstruct
             e.TransponderData.ForEach(rawData => 
             {
                 var decodedDate = Decode(rawData);
@@ -36,10 +35,12 @@ namespace ATM_1
         }
 
         // TODO Finishc emttyplist function, or remove this
+        /*
         public void EmptyList(IObjStruct flightObj)
         {
             
         }
+        */
 
         protected virtual void OnDecoderEvent(DecoderEventArgs e)
         {

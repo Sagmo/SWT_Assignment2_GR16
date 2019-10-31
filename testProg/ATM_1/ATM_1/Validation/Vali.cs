@@ -2,7 +2,6 @@ using System;
 
 namespace ATM_1
 {
-    // TODO make validation
     public class Vali : IVali
     {
         readonly IAirSpace _airSpace; 
