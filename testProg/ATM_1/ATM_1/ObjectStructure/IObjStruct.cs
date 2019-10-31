@@ -3,7 +3,7 @@ using System;
 
 namespace ATM_1
 {
-    public interface IObjStruct 
+    public interface IObjStruct
     {
         public void Attach(ITrack flightTrack);
         public void Update(ITrack flightTrack);
