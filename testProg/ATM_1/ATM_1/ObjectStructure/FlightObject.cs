@@ -8,6 +8,8 @@ namespace ATM_1
         private List<ITrack> _objects;
         IVali _vali; 
 
+        public event EventHandler<ObjectEventArgs> ObjectEvent;
+
         public FlightObject(IVali vali)
         {
             _objects = new List<ITrack>();
@@ -20,19 +22,13 @@ namespace ATM_1
             {
                 if(CheckExist(flightTrack.Tag))
                 {
-                    Update(flightTrack);
+                    Detach(flightTrack);
                 } 
-                else
-                {
-                    _objects.Add(flightTrack);
-                }
-                // EVENT
+                
+                _objects.Add(flightTrack);
+                
+                OnObjectEvent(new ObjectEventArgs {Track = flightTrack});
             }
-        }
-
-        public void Update(ITrack flightTrack)
-        {
-            _objects.Find(x => x.Tag.Contains(flightTrack.Tag));
         }
 
         public void Detach(ITrack flightTrack)
@@ -42,16 +38,18 @@ namespace ATM_1
 
         public bool CheckExist(string newTag)
         {
-            // _objects.Find(x => x.Tag.Contains(newTag));
-            
+            //_objects.Find(x => x.Tag.Contains(flightTrack.Tag));
             foreach (ITrack e in _objects)
             {
                if(e.Tag == newTag)
                    return true;
             }
-
             return false;
         }
 
+        protected virtual void OnObjectEvent(ObjectEventArgs e)
+        {
+            ObjectEvent?.Invoke(this, e);
+        }
     }
 }
