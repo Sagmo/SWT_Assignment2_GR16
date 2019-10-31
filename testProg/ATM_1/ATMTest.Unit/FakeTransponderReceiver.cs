@@ -1,4 +1,5 @@
 
+/*
 namespace ATM_1.Unit
 {
     public class FakeTransponderReceiver : ITransponderReceiver
@@ -9,3 +10,4 @@ namespace ATM_1.Unit
         }
     }
 }
+*/
