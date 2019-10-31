@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Runtime.CompilerServices;
+using System.Linq;
 
-namespace ATM_1.Writer
+namespace ATM_1
 {
     class Writer : IWriter
     {
@@ -18,22 +20,38 @@ namespace ATM_1.Writer
         {
             string path = "log.txt";
             const string dateFormat = "yyyyMMddHHmmssfff";
-            CultureInfo cultureInfo = new CultureInfo("dk-DK");
+            CultureInfo cultureInfo = new CultureInfo("da-DK");
             var timestamp = DateTime.ParseExact(track.TimeStamp, dateFormat, cultureInfo);
 
             sw = new StreamWriter(path);
-            sw.WriteLine("Tag: " + track.Tag + ", X-Coordinate: " + track.xCoordinate + ", Y-Coordinate: " +
-                             track.yCoordinate + ", Altitude: " + track.Altitude + ", Timestamp: " + track.TimeStamp);
+            sw.WriteLine($"{track.Tag}\t" +
+                         $"[{track.xCoordinate}:{track.yCoordinate}]\t" +
+                         $"[{track.Altitude}]\t" +
+                         $"[{track.TimeStamp}]\t");
+            sw.Close();
         }
 
         public void WriteConsole(ITrack track)
         {
-        const string dateFormat = "yyyyMMddHHmmssfff";
-        CultureInfo cultureInfo = new CultureInfo("dk-DK");
-        var timestamp = DateTime.ParseExact(track.TimeStamp, dateFormat, cultureInfo);
+            const string dateFormat = "yyyyMMddHHmmssfff";
+            CultureInfo cultureInfo = new CultureInfo("da-DK");
+            var timestamp = DateTime.ParseExact(track.TimeStamp, dateFormat, cultureInfo);
 
-        Console.WriteLine("Tag: {0}, X-Coordinate: {1}, Y-Coordinate: {2}, Altitude: {3}, Timestamp: {4}",
-                track.Tag, track.xCoordinate, track.yCoordinate, track.Altitude, timestamp);
+            Console.WriteLine($"{track.Tag}\t" +
+                              $"[{track.xCoordinate}:{track.yCoordinate}]\t" +
+                              $"[{track.Altitude}]\t" +
+                              $"[{track.TimeStamp}]\t");
+        }
+
+        public void WriteSeperationConsole(List<ITrack> list)
+        {
+            const string dateFormat = "yyyyMMddHHmmssfff";
+            CultureInfo cultureInfo = new CultureInfo("da-DK");
+            var timestamp1 = DateTime.ParseExact(list[0].TimeStamp, dateFormat, cultureInfo);
+            var timestamp2 = DateTime.ParseExact(list[1].TimeStamp, dateFormat, cultureInfo);
+
+            Console.WriteLine("Seperation: Tag1: {0}, Tag2: {1}, Timestamp1: {2}, Timestamp2: {3}", list[0], list[1],
+                timestamp1, timestamp2);
         }
 
     }

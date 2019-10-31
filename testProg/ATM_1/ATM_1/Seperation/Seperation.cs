@@ -6,13 +6,11 @@ namespace ATM_1
 {
     public class Seperation : ISeperation
     {
-        public ILog _logFile;
         public event EventHandler<SeperationWarningEventArgs> SeperationWarningEvent;
         
         
-        public Seperation(ILog logFile, IDecoder decoder)
+        public Seperation(IDecoder decoder)
         {
-            _logFile = logFile;
             decoder.DecodeEvent += HandleDecodeEvent;
         }
 
