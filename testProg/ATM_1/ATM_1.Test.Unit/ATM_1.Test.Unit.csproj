@@ -10,4 +10,14 @@
     <PackageReference Include="NUnit" Version="3.12.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ATM_1\ATM_1.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TransponderReceiver">
+      <HintPath>..\ATM_1\TransponderReceiver.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
