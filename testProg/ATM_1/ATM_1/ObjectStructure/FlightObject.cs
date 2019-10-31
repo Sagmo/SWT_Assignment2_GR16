@@ -42,5 +42,10 @@ namespace ATM_1
             }
             return false;
         }
+
+        public List<ITrack> getlist()
+        {
+            return _objects;
+        }
     }
 }

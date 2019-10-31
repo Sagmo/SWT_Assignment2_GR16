@@ -18,7 +18,7 @@ namespace ATM_1
 
         private void handleDecodeEvent(object sender, DecoderEventArgs e)
         {
-            foreach (ITrack t in e.FlightObjectStruct)
+            foreach (ITrack t in e.FlightObjectStruct.getlist())
             {
                 
             }
