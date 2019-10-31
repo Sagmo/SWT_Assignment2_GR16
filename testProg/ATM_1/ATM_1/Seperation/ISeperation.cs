@@ -4,6 +4,6 @@ namespace ATM_1
 {
     public interface ISeperation
     {
-        // event EventHandler<SeperationWarningEventArg> SeperationWarningEvent;
+        event EventHandler<SeperationWarningEventArgs> SeperationWarningEvent;
     }
 }
