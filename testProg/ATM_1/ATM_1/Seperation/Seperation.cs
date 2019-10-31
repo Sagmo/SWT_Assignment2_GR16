@@ -18,11 +18,27 @@ namespace ATM_1
 
         private void handleDecodeEvent(object sender, DecoderEventArgs e)
         {
-            foreach (ITrack t in e.FlightObjectStruct.getlist())
+            foreach (var track in e.FlightObjectStruct.getlist())
             {
-                
-            }
-        }
+                foreach (var otherTrack in e.FlightObjectStruct.getlist())
+                {
+                    if (track.Tag == otherTrack.Tag) continue;
+
+                    var delta = new
+                    {
+                        X = track.xCoordinate - otherTrack.XPosition,
+                        Y = track.YPosition - otherTrack.YPosition,
+                    };
+
+                    var distance = new
+                    {
+                        Horizontal = Math.Sqrt(Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2)),
+                        Vertical = Math.Abs(track.Altitude - otherTrack.Altitude)
+                    };
+
+                    if (distance.Horizontal < 5000 && distance.Vertical < 300)
+                    {
+                    }
 
         public void CheckSeperation()
         {
