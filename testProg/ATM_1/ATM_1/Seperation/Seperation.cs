@@ -13,21 +13,26 @@ namespace ATM_1
         public Seperation(ILog logFile, IDecoder decoder)
         {
             _logFile = logFile;
-            decoder.DecodeEvent += handleDecodeEvent;
+            decoder.DecodeEvent += HandleDecodeEvent;
         }
 
-        private void handleDecodeEvent(object sender, DecoderEventArgs e)
+        private void HandleDecodeEvent(object sender, DecoderEventArgs e)
         {
-            foreach (var track in e.FlightObjectStruct.getlist())
+            CheckSeperation(e.FlightObjectStruct.getlist());
+        }
+
+        public void CheckSeperation(List<ITrack> e)
+        {
+            foreach (var track in e)
             {
-                foreach (var otherTrack in e.FlightObjectStruct.getlist())
+                foreach (var otherTrack in e)
                 {
                     if (track.Tag == otherTrack.Tag) continue;
 
                     var delta = new
                     {
-                        X = track.xCoordinate - otherTrack.XPosition,
-                        Y = track.YPosition - otherTrack.YPosition,
+                        X = track.xCoordinate - otherTrack.xCoordinate,
+                        Y = track.yCoordinate - otherTrack.yCoordinate,
                     };
 
                     var distance = new
@@ -38,11 +43,11 @@ namespace ATM_1
 
                     if (distance.Horizontal < 5000 && distance.Vertical < 300)
                     {
+                        var flightsInSeparation = new List<ITrack>() { track, otherTrack };
+                        OnSeperationWarning(new SeperationWarningEventArgs { SeperationList = flightsInSeparation });
                     }
-
-        public void CheckSeperation()
-        {
-
+                }
+            }
         }
 
         protected virtual void OnSeperationWarning(SeperationWarningEventArgs e)
