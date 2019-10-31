@@ -6,7 +6,7 @@ using TransponderReceiver;
 
 namespace ATM_1
 {
-    class Decoder : IDecoder
+    public class Decoder : IDecoder
     {
         private IObjStruct _flightObj;
 
