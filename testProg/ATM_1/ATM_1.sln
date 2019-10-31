@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATM_1", "ATM_1\ATM_1.csproj", "{A25472E0-BA29-4643-804A-6917890F3ADF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATM.Test.Unit", "SkidMigIMundenPik\ATM.Test.Unit.csproj", "{D8A242E3-B42E-4D26-98AD-0B43A1A639A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATM.Test.Unit", "DecoderTest\ATM.Test.Unit.csproj", "{BD9A9C21-4F6A-41EF-BFF2-6EEB42D76CBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{A25472E0-BA29-4643-804A-6917890F3ADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A25472E0-BA29-4643-804A-6917890F3ADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A25472E0-BA29-4643-804A-6917890F3ADF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8A242E3-B42E-4D26-98AD-0B43A1A639A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8A242E3-B42E-4D26-98AD-0B43A1A639A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8A242E3-B42E-4D26-98AD-0B43A1A639A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8A242E3-B42E-4D26-98AD-0B43A1A639A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD9A9C21-4F6A-41EF-BFF2-6EEB42D76CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD9A9C21-4F6A-41EF-BFF2-6EEB42D76CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD9A9C21-4F6A-41EF-BFF2-6EEB42D76CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD9A9C21-4F6A-41EF-BFF2-6EEB42D76CBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

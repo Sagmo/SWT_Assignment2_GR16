@@ -5,6 +5,6 @@ namespace ATM_1
 {
     public class SeperationWarningEventArgs : EventArgs
     {
-        public ITrack track { get; set; }
+        public List<ITrack> SeperationList { get; set; }
     }
 }
