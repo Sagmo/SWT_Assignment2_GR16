@@ -10,6 +10,8 @@ namespace ATM_1
     {
         private IObjStruct _flightObj;
 
+        public event EventHandler<DecoderEventArgs> DecodeEvent;
+
         public Decoder(IObjStruct flightObj, ITransponderReceiver transRec)
         {
             _flightObj = flightObj;
@@ -25,7 +27,7 @@ namespace ATM_1
                 _flightObj.Attach(new Track(decodedDate[0], decodedDate[1], decodedDate[2], decodedDate[3], decodedDate[4]));
             });
 
-            // TODO ADD EVENT after all elements are added
+           OnDecoderEvent(new DecoderEventArgs { FlightObjectStruct = _flightObj }); 
         }
 
         public List<string> Decode(string msg)
@@ -33,10 +35,15 @@ namespace ATM_1
             return new List<string>(msg.Split(';'));
         }
 
-        // TODO Finishc emttyplist function
+        // TODO Finishc emttyplist function, or remove this
         public void EmptyList(IObjStruct flightObj)
         {
             
+        }
+
+        protected virtual void OnDecoderEvent(DecoderEventArgs e)
+        {
+            DecodeEvent?.Invoke(this, e);
         }
     }
 }

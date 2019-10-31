@@ -8,8 +8,6 @@ namespace ATM_1
         private List<ITrack> _objects;
         IVali _vali; 
 
-        public event EventHandler<ObjectEventArgs> ObjectEvent;
-
         public FlightObject(IVali vali)
         {
             _objects = new List<ITrack>();
@@ -25,9 +23,7 @@ namespace ATM_1
                     Detach(flightTrack);
                 } 
                 
-                _objects.Add(flightTrack);
-                
-                OnObjectEvent(new ObjectEventArgs {Track = flightTrack});
+                _objects.Add(flightTrack);    
             }
         }
 
@@ -45,11 +41,6 @@ namespace ATM_1
                    return true;
             }
             return false;
-        }
-
-        protected virtual void OnObjectEvent(ObjectEventArgs e)
-        {
-            ObjectEvent?.Invoke(this, e);
         }
     }
 }
