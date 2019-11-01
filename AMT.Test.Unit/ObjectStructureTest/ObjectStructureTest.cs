@@ -15,5 +15,11 @@ namespace AMT.Test.Unit
         private FlightObject _uut;
         private IVali _validator;
         private bool _event;
+
+
+        public void tetsstest()
+        {
+        	
+        }
     }
 }
