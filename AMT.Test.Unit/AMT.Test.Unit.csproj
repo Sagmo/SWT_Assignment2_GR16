@@ -71,6 +71,7 @@
     <Compile Include="Seperation\FakeFlightObj.cs" />
     <Compile Include="Seperation\Seperation.Test.Unit.cs" />
     <Compile Include="Track\Track.Test.cs" />
+    <Compile Include="Validation\ValidationTest.cs" />
     <Compile Include="Writer\Writer.Test.Unit.cs" />
   </ItemGroup>
   <ItemGroup>
