@@ -42,8 +42,8 @@ namespace AMT.Test.Unit.Airspace
         [Test]
         public void TestAirspaceGetUpperBoundary()
         {
-            var Upperboundary = _airSpace._UpperBoundary;
-            Assert.That(_airSpace._UpperBoundary, Is.EqualTo(Upperboundary));
+            var upperboundary = _airSpace._UpperBoundary;
+            Assert.That(_airSpace._UpperBoundary, Is.EqualTo(upperboundary));
         }
     }
 }

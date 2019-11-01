@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AMT.Test.Unit.Seperation;
+using ATM_1;
 using NSubstitute;
 using NUnit.Framework;
-using ATM_1;
-using Castle.Core.Smtp;
-using TransponderReceiver;
 
-namespace AMT.Test.Unit
+namespace AMT.Test.Unit.LoggerTest
 {
     [TestFixture]
     class LogTest
@@ -54,8 +48,8 @@ namespace AMT.Test.Unit
         [Test]
         public void DecoderDecodeEvent_ListReceived_EventHandled()
         {
-            ITrack track1 = new Track("1", "2", "3", "600", "5");
-            ITrack track2 = new Track("1", "2", "3", "600", "5");
+            ITrack track1 = new ATM_1.Track("1", "2", "3", "600", "5");
+            ITrack track2 = new ATM_1.Track("1", "2", "3", "600", "5");
             
             _iOjbStruct.Attach(track1);
             _iOjbStruct.Attach(track2);
@@ -67,8 +61,8 @@ namespace AMT.Test.Unit
         [Test]
         public void SeperationEvent_SeperationReceived_EventHandled()
         {
-            ITrack track1 = new Track("1", "2", "3", "600", "5");
-            ITrack track2 = new Track("1", "2", "3", "600", "5");
+            ITrack track1 = new ATM_1.Track("1", "2", "3", "600", "5");
+            ITrack track2 = new ATM_1.Track("1", "2", "3", "600", "5");
 
             var flightSepList = new List<ITrack>() {track1, track2};
 
@@ -81,8 +75,8 @@ namespace AMT.Test.Unit
         [Test]
         public void DecoderDecodeEvent_ListWritten_EventHandled()
         {
-            ITrack track1 = new Track("1", "2", "3", "600", "5");
-            ITrack track2 = new Track("1", "2", "3", "600", "5");
+            ITrack track1 = new ATM_1.Track("1", "2", "3", "600", "5");
+            ITrack track2 = new ATM_1.Track("1", "2", "3", "600", "5");
 
             _iOjbStruct.Attach(track1);
             _iOjbStruct.Attach(track2);
