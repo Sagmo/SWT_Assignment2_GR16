@@ -19,6 +19,7 @@ namespace AMT.Test.Unit
         [SetUp]
         public void Setup()
         {
+            _validator = Substitute.For<IVali>();
 
         }
 
