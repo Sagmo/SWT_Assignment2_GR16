@@ -21,15 +21,14 @@ namespace AMT.Test.Unit
         [SetUp]
         public void Setup()
         {
-            uut = new Track();
+            //uut = new Track();
 
         }
-        [Test] 
-        public void RemoveWrongTrackTagTest()
+
+        [TestCase()]
+        public void TestTrackTag()
         {
-            Track dummyTrackDataAway = new Track("X", DummyXCord, DummyYCord, DummyAltitude, DummyDate);
-            List<Track> dummyTrackList = new List<Track> { dummyTrackDataAway };
-            //Assert.IsEmpty(uut.(dummyTrackList));
+
         }
     }
 }
