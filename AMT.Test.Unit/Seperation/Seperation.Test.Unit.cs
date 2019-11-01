@@ -16,12 +16,14 @@ namespace AMT.Test.Unit.Seperation
         private DecoderEventArgs _decoderEventArgs;
         private SeperationWarningEventArgs _seperationWarningEventArgs;
         private IObjStruct _opj;
+        private IVali _vali;
 
         private bool eventHandled = false;
         private bool eventRaised = false;
         [SetUp]
         public void Setup()
         {
+            _vali = Substitute.For<IVali>();
             _decoder = Substitute.For<IDecoder>();
             _opj = Substitute.For<IObjStruct>();
             _uut = new ATM_1.Seperation(_decoder);
@@ -33,9 +35,9 @@ namespace AMT.Test.Unit.Seperation
         [Test]
         public void testtest()
         {
+            _opj = new FlightObject(_vali);
             _opj.Attach(new Track("1","2","3","4","5"));
             _opj.Attach(new Track("1", "2", "3", "4", "5"));
-
             _decoder.DecodeEvent += Raise.EventWith(new DecoderEventArgs{FlightObjectStruct = _opj});
             Assert.That(eventRaised, Is.True);
         }
