@@ -68,9 +68,10 @@ namespace AMT.Test.Unit
         public void AttachTrackWithTagThatAlreadyExists()
         {
             ITrack track1 = new Track("thg", "6000", "5800", "10000", "20151006213456789");
+            ITrack track2 = new Track("thg", "7000", "5800", "10000", "20151006213456789");
             _uut.Attach(track1);
-            _uut.Attach(track1);
-            List<ITrack> list = new List<ITrack>(){track1};
+            _uut.Attach(track2);
+            List<ITrack> list = new List<ITrack>(){track2};
             Assert.That(_uut.getlist(),Is.EquivalentTo(list));
         }
 
