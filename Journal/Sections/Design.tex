@@ -9,17 +9,24 @@
 \subsection{Decoder}
 Decoder opgave er at tage imod beskeder fra Transreceiver. Derefter dele beskederne op i tag, X-koordinat, Y-koordinat, Altitude og Time. Dette data bruges til at oprette Tracks der indsættes i en objektstruktur
 \subsection{Track}
-
-\subsection{Flightobject}
-
+Track opgave er at opdele en streng også oprette et nyt track som den tilfører et tag variable, X-koordinat variable, Y-koordinat variable, Altitude variable, Timestamp variable, Velocity variable og Compass course variable med henholdsvis den korrekte type. denne her variable kan så opdateres ved brug af set metoden og dens specifikke variable kan tilgås ved hjælp af get.
+\subsection{IObjectstructure}
+vores tracks bliver så lagt til en objektstruktur før den her objektstruktur lægger ind den given track, tager den og tjækker ved hjælp af validate funktionen om den given track er inden for vores airspace. hvis den er i det given airspace tjekker den så om det givene track allerede er i objektstrukturen. hvis den er det så opdatere den det given track for ikke at lave duplicate. hvis den ikke er til stede i objektstrukturen så lægger den det given track ind i objektstrukturen
 \subsection{Validation}
-
+Validation tager et Airspace der har et defineret område. dernæst har den en validate funktion der tager en ITrack ind som parameter. dernæst bliver track elementets altitude sammenlignet med vores boundary værdier (lower boundary og upper boundary) samt at dens x-koordinat og y-koordinat er inden for airspacets bestemte x og y parameter. de her 3 tester er af typen bool validate returner så de her 3 resultater sammen med en AND operator som giver os true i det tilfælde at alle 3 testne er true og giver os false hvis kun en af dem er false. på den måde ved vi at hvis validate retunere true vil vores track som validate tager ind som parameter være inden for vores airspace
 \subsection{Airspace}
-
+Airspace definere vores boundary værdier for de områder hvor vi er interesseret i logføre alle fly. måden det gøres på er at den tager en x og y størrelse, der definere den 2D udstrækning af vores airspace. dernæst tager den også en lower boundary og upper boundary der definere vores 3D airspace. lower boundary er fra jorden og til starte højden af vores airspace. upper boundary er højden på vores airspace. vi kan tilgå airspacets størrelser ved hjælp af set og get funktioner.
 \subsection{Transreceiver-Fac}
-
+vi får dataen fra alle fly der sender ud et transponder og bliver modtaget af en receiver. den her data bliver så behandlet af vores decoder der afventer data gennem en event.
 \subsection{Seperation}
-
+seperation tager ind en liste over alle fly der er i airspacet og tjekker x og y koordinater mod hinanden. hvis den horisontale distance og vertikal distance er inden for et given område. så sender den ud en seperation warning event.
 \subsection{Log}
+log subscriber til seperation og decoder. når der bliver sendt et event fra seperation skriver den så den data ind i en fil og dernæst til konsollen. når den modtager et event fra decoder skriver den, den data ud til konsollen 
 
-\subsection{title}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{../Diagrammer/SD_ATM}
+	\caption{Sekvens diagram over ATM}
+	\label{fig:sdatm}
+\end{figure}
