@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ATM_1;
 using NSubstitute;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 
 namespace AMT.Test.Unit.Seperation
 {
@@ -17,19 +18,23 @@ namespace AMT.Test.Unit.Seperation
         private SeperationWarningEventArgs _seperationWarningEventArgs;
         private IObjStruct _opj;
         private IVali _vali;
+        private IAirSpace _airSpace;
 
         private bool eventHandled = false;
         private bool eventRaised = false;
         [SetUp]
         public void Setup()
         {
-            _vali = Substitute.For<IVali>();
+            _seperationWarningEventArgs = null;
+            //_vali = Substitute.For<IVali>();
+            _airSpace = new AirSpace(80000,80000,500,20000);
+            _vali = new Vali(_airSpace);
             _decoder = Substitute.For<IDecoder>();
             _opj = Substitute.For<IObjStruct>();
             _uut = new ATM_1.Seperation(_decoder);
             _decoder.DecodeEvent += (sender, args) => eventRaised = true;
             _decoder.DecodeEvent += (sender, args) => _decoderEventArgs = args;
-            _uut.SeperationWarningEvent += (sender, args) => { eventRaised = true; };
+            //_uut.SeperationWarningEvent += (sender, args) => { eventRaised = true; };
             _uut.SeperationWarningEvent += (sender, args) => { _seperationWarningEventArgs = args; };
         }
 
@@ -57,14 +62,13 @@ namespace AMT.Test.Unit.Seperation
         public void hej2()
         {
             _opj = new FlightObject(_vali);
-            _opj.Attach(new Track("thg", "6000", "5728", "10000", "20151006213456789"));
-            _opj.Attach(new Track("abc", "5900", "5800", "10000", "20151006213456789"));
+            _opj.Attach(new Track("thg", "6000", "5800", "10000", "20151006213456789"));
+            _opj.Attach(new Track("abc", "6000", "5800", "10000", "20151006213456781"));
+
+            //List<ITrack> list = new List<ITrack>(){ new Track("thg", "6000", "5800", "10000", "20151006213456789"),
+                //new Track("abc", "6000", "5800", "10000", "20151006213456781") };
             _uut.CheckSeperation(_opj.getlist());
-            Assert.That(eventRaised, Is.True);
+            Assert.That(_seperationWarningEventArgs, Is.Not.Null);
         }
-
-
-
-
     }
 }
