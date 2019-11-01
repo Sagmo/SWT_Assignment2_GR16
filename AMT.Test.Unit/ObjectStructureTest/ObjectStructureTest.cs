@@ -14,8 +14,6 @@ namespace AMT.Test.Unit
     {
         private IObjStruct _uut;
         private IVali _validator;
-        //private ITrack _track;
-        //private bool _event;
 
         [SetUp]
         public void Setup()
@@ -66,14 +64,15 @@ namespace AMT.Test.Unit
             Assert.That(_uut.CheckExist(track2.Tag),Is.False);
         }
 
-        /*[Test]
-        public void AttachTrackThatAlreadyExists()
+        [Test]
+        public void AttachTrackWithTagThatAlreadyExists()
         {
             ITrack track1 = new Track("thg", "6000", "5800", "10000", "20151006213456789");
             _uut.Attach(track1);
             _uut.Attach(track1);
-            Assert.That(_uut.getlist(),Is.Empty);
-        }*/
+            List<ITrack> list = new List<ITrack>(){track1};
+            Assert.That(_uut.getlist(),Is.EquivalentTo(list));
+        }
 
         [Test]
         public void ClearList_ResultsInEmptyList()
