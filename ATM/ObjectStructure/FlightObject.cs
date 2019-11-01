@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ATM_1
 {
-    class FlightObject : IObjStruct
+    public class FlightObject : IObjStruct
     {
         private List<ITrack> _objects;
         IVali _vali; 
