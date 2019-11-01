@@ -65,5 +65,14 @@ namespace AMT.Test.Unit
             Assert.That(_uut.CheckExist(track1.Tag),Is.True);
             Assert.That(_uut.CheckExist(track2.Tag),Is.False);
         }
+
+        [Test]
+        public void AttachTrackThatAlreadyExists_ResultsInDetach()
+        {
+            ITrack track1 = new Track("thg", "6000", "5800", "10000", "20151006213456789");
+            _uut.Attach(track1);
+            _uut.Attach(track1);
+            Assert.That(_uut.getlist(),Is.Empty);
+        }
     }
 }

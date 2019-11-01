@@ -21,9 +21,11 @@ namespace ATM_1
                 if(CheckExist(flightTrack.Tag))
                 {
                     Detach(flightTrack);
-                } 
-                
-                _objects.Add(flightTrack);    
+                }
+                else
+                {
+                    _objects.Add(flightTrack);
+                }
             }
         }
 
