@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Airspace\Airspace.Unit.Test.cs" />
     <Compile Include="AMT.Test.Unit.cs" />
     <Compile Include="DecoderTest\DecoderTest.cs" />
     <Compile Include="LogTest.cs" />
