@@ -77,7 +77,7 @@ namespace AMT.Test.Unit
             Assert.That(_seperationWarningBool, Is.True);
         }
 
-        /*
+        
         [Test]
         public void DecoderDecodeEvent_ListWritten_EventHandled()
         {
@@ -88,9 +88,11 @@ namespace AMT.Test.Unit
             _iOjbStruct.Attach(track2);
 
             _idecoder.DecodeEvent += Raise.EventWith(new DecoderEventArgs { FlightObjectStruct = _iOjbStruct });
-            Assert.That(_iwriter.WriteConsole(_iOjbStruct), Is.EqualTo(_iOjbStruct.getlist()));
+
+            //_decoderEventArgs.FlightObjectStruct
+            Assert.That(_decoderEventArgs.FlightObjectStruct.getlist(), Is.EqualTo(_iOjbStruct.getlist()));
         }
-        */
+        
 
 
     }
