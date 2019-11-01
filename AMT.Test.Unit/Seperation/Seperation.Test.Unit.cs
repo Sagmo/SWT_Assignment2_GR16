@@ -34,7 +34,6 @@ namespace AMT.Test.Unit.Seperation
             _uut = new ATM_1.Seperation(_decoder);
             _decoder.DecodeEvent += (sender, args) => eventRaised = true;
             _decoder.DecodeEvent += (sender, args) => _decoderEventArgs = args;
-            //_uut.SeperationWarningEvent += (sender, args) => { eventRaised = true; };
             _uut.SeperationWarningEvent += (sender, args) => { _seperationWarningEventArgs = args; };
         }
 
@@ -65,10 +64,19 @@ namespace AMT.Test.Unit.Seperation
             _opj.Attach(new Track("thg", "6000", "5800", "10000", "20151006213456789"));
             _opj.Attach(new Track("abc", "6000", "5800", "10000", "20151006213456781"));
 
-            //List<ITrack> list = new List<ITrack>(){ new Track("thg", "6000", "5800", "10000", "20151006213456789"),
-                //new Track("abc", "6000", "5800", "10000", "20151006213456781") };
             _uut.CheckSeperation(_opj.getlist());
             Assert.That(_seperationWarningEventArgs, Is.Not.Null);
+        }
+
+        [Test]
+        public void hej3()
+        {
+            _opj = new FlightObject(_vali);
+            _opj.Attach(new Track("thg", "6000", "5800", "10000", "20151006213456789"));
+            _opj.Attach(new Track("abc", "6000", "5800", "10000", "20151006213456781"));
+
+            _uut.CheckSeperation(_opj.getlist());
+            Assert.That(_seperationWarningEventArgs.SeperationList, Is.EquivalentTo(_opj.getlist()));
         }
     }
 }
