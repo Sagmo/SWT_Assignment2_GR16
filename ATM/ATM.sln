@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM", "ATM\ATM.csproj", "{93CAB951-CC50-468D-ACB8-461A374C1CF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMT.Test.Unit", "AMT.Test.Unit\AMT.Test.Unit.csproj", "{41B2C032-189B-41BE-95CD-48CCA6D5C863}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93CAB951-CC50-468D-ACB8-461A374C1CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93CAB951-CC50-468D-ACB8-461A374C1CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93CAB951-CC50-468D-ACB8-461A374C1CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93CAB951-CC50-468D-ACB8-461A374C1CF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41B2C032-189B-41BE-95CD-48CCA6D5C863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41B2C032-189B-41BE-95CD-48CCA6D5C863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41B2C032-189B-41BE-95CD-48CCA6D5C863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41B2C032-189B-41BE-95CD-48CCA6D5C863}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60488CB5-0F87-440B-9A6F-D71A0401F75F}
+	EndGlobalSection
+EndGlobal
