@@ -9,5 +9,11 @@ using TransponderReceiver;
 
 namespace AMT.Test.Unit
 {
-
+    [TestFixture]
+   	public class ObjectStructureTest
+    {
+        private FlightObject _uut;
+        private IVali _validator;
+        private bool _event;
+    }
 }
