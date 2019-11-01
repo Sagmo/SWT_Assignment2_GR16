@@ -25,8 +25,9 @@ namespace AMT.Test.Unit
 
         }
 
-        [TestCase()]
-        public void TestTrackTag()
+        [TestCase("ATR423", "39405")]
+        [TestCase("ATR500")]
+        public void TestTrackTag(string tag, string xCoo, string yCoo, string aptitude, string timeStamp)
         {
 
         }
