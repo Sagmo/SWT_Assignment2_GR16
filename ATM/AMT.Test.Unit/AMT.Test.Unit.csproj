@@ -65,7 +65,11 @@
   <ItemGroup>
     <Compile Include="AMT.Test.Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Compile Include="Seperation\Seperation.Test.Unit.cs" />
+=======
+    <Compile Include="Track.Test.cs" />
+>>>>>>> 87ec552abe5fe99ac3f7b2543c1bc6b68089f15c
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
