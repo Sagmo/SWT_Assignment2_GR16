@@ -30,14 +30,15 @@ namespace AMT.Test.Unit.Seperation
             _decoder.DecodeEvent += (sender, args) => eventRaised = true;
             _decoder.DecodeEvent += (sender, args) => _decoderEventArgs = args;
             _uut.SeperationWarningEvent += (sender, args) => { eventRaised = true; };
+            _uut.SeperationWarningEvent += (sender, args) => { _seperationWarningEventArgs = args; };
         }
 
         [Test]
         public void testtest()
         {
             _opj = new FlightObject(_vali);
-            _opj.Attach(new Track("1","2","3","4","5"));
-            _opj.Attach(new Track("1", "2", "3", "4", "5"));
+            _opj.Attach(new Track("1","2","3","600","5"));
+            _opj.Attach(new Track("1", "2", "3", "600", "5"));
             _decoder.DecodeEvent += Raise.EventWith(new DecoderEventArgs{FlightObjectStruct = _opj});
             Assert.That(eventRaised, Is.True);
         }
@@ -45,8 +46,24 @@ namespace AMT.Test.Unit.Seperation
         [Test]
         public void hej()
         {
-            
+            _opj = new FlightObject(_vali);
+            _opj.Attach(new Track("1", "2", "3", "600", "5"));
+            _opj.Attach(new Track("1", "2", "3", "600", "5"));
+            _decoder.DecodeEvent += Raise.EventWith(new DecoderEventArgs { FlightObjectStruct = _opj });
+            Assert.That(_decoderEventArgs.FlightObjectStruct, Is.EqualTo(_opj));
         }
+
+        [Test]
+        public void hej2()
+        {
+            _opj = new FlightObject(_vali);
+            _opj.Attach(new Track("thg", "6000", "5728", "10000", "20151006213456789"));
+            _opj.Attach(new Track("abc", "5900", "5800", "10000", "20151006213456789"));
+            _uut.CheckSeperation(_opj.getlist());
+            Assert.That(eventRaised, Is.True);
+        }
+
+
 
 
     }
