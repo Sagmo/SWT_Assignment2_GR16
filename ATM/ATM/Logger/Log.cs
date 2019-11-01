@@ -18,19 +18,13 @@ namespace ATM_1
 
         private void HandleDecodeEvent(object sender, DecoderEventArgs e)
         {
-            foreach (ITrack track in e.FlightObjectStruct.getlist())
-            {
-                writer.WriteConsole(track);
-            }
+            writer.WriteConsole(e.FlightObjectStruct.getlist());
         }
 
         private void HandleSeperationWarning(object sender, SeperationWarningEventArgs e)
         {
             writer.WriteSeperationConsole(e.SeperationList);
-            foreach (ITrack track in e.SeperationList)
-            {
-                writer.WriteFile(track);
-            }
+            writer.WriteFile(e.SeperationList);
         }
     }
 }
