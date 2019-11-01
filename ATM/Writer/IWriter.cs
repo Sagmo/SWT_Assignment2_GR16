@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ATM_1
 {
-    interface IWriter
+    public interface IWriter
     {
         void WriteFile(List<ITrack> list);
         void WriteConsole(List<ITrack> list);

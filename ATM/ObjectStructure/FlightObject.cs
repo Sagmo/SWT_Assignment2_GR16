@@ -21,11 +21,23 @@ namespace ATM_1
                 if(CheckExist(flightTrack.Tag))
                 {
                     Detach(flightTrack);
-                } 
+                }
                 
-                _objects.Add(flightTrack);    
+                _objects.Add(flightTrack);
             }
+            /*
+            else if( _objects.Find(x => x.Tag.Contains(flightTrack.Tag)) != null ) 
+            {
+                 Detach(flightTrack);
+            }
+            */
         }
+
+        public void clearList()
+        {
+            
+                _objects.Clear();
+            }
 
         public void Detach(ITrack flightTrack)
         {

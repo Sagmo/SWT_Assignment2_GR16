@@ -32,12 +32,12 @@ namespace AMT.Test.Unit
 
             _uut = new Decoder(_ObjStruct, _receiver);
 
-            _receiver.TransponderDataReady += (sender, args) => _eventHandled = true;
-            _receiver.TransponderDataReady += (sender, args) => _transponderDataEventArgs = args;
-        }
+            _receiver.TransponderDataReady += (sender, args) => _eventHandled = true; 
+            _receiver.TransponderDataReady += (sender, args) => _transponderDataEventArgs = args; 
+        } 
 
-        [Test]
-        public void TransponderDataReadyEvent_DataReceived_EventHandled()
+        [Test] 
+        public void TransponderDataReadyEvent_DataReceived_EventHandled() 
         {
             var data = new List<string>()
             {
