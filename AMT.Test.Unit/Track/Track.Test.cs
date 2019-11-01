@@ -10,6 +10,7 @@ using TransponderReceiver;
 
 namespace AMT.Test.Unit
 {
+    [TestFixture]
     public class TrackTest
     {
         private Track _uut;
@@ -59,5 +60,43 @@ namespace AMT.Test.Unit
             _uut = new Track(tag, xCoo, yCoo, aptitude, timeStamp);
             Assert.That(_uut.TimeStamp, Is.EqualTo(timeStamp));
         }
+
+        [TestCase("ATR500", "39405", "12932", "14000", "2018051563055", 0, 0)]
+        public void TestTrackHorizontalVelocity_Default(string tag, string xCoo, string yCoo, string aptitude, string timeStamp, double test_HorVel, double test_CompassCourse)
+        {
+            _uut = new Track(tag, xCoo, yCoo, aptitude, timeStamp);
+            Assert.That(_uut.HorizontalVelocity, Is.EqualTo(test_HorVel));
+        }
+
+        [TestCase("ATR500", "39405", "12932", "14000", "2018051563055", 50, 50)]
+        [TestCase("ATR423", "39405", "12932", "14000", "2018051563055", 100, 100)]
+        public void TestTrackHorizontalVelocity(string tag, string xCoo, string yCoo, string aptitude, string timeStamp, double test_HorVel, double test_CompassCourse)
+        {
+            _uut = new Track(tag, xCoo, yCoo, aptitude, timeStamp);
+            _uut.HorizontalVelocity = test_HorVel;
+
+            Assert.That(_uut.HorizontalVelocity, Is.EqualTo(test_HorVel));
+        }
+
+
+        [TestCase("ATR500", "39405", "12932", "14000", "2018051563055", 0, 0)]
+        public void TestTrackCompassCourse_Default(string tag, string xCoo, string yCoo, string aptitude, string timeStamp, double test_HorVel, double test_CompassCourse)
+        {
+            _uut = new Track(tag, xCoo, yCoo, aptitude, timeStamp);
+            Assert.That(_uut.CompassCourse, Is.EqualTo(test_CompassCourse));
+        }
+
+
+        [TestCase("ATR500", "39405", "12932", "14000", "2018051563055", 50, 50)]
+        [TestCase("ATR423", "39405", "12932", "14000", "2018051563055", 100, 100)]
+        public void TestTrackCompassCourse(string tag, string xCoo, string yCoo, string aptitude, string timeStamp, double test_HorVel, double test_CompassCourse)
+        {
+            _uut = new Track(tag, xCoo, yCoo, aptitude, timeStamp);
+            _uut.CompassCourse = test_CompassCourse;
+
+            Assert.That(_uut.CompassCourse, Is.EqualTo(test_CompassCourse));
+        }
+
+
     }
 }
