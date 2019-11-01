@@ -16,10 +16,16 @@ namespace AMT.Test.Unit
         private IVali _validator;
         private bool _event;
 
+        [SetUp]
+        public void Setup()
+        {
 
+        }
+
+        [Test]
         public void tetsstest()
         {
-        	
+            
         }
     }
 }
