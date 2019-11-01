@@ -6,10 +6,6 @@ namespace ATM_1
 {
     public class Track : ITrack
     {
-        public Track()
-        {
-        }
-
         public Track(string tag, string xCoo, string yCoo, string altitude, string timeStamp)
         {
             Tag         = tag;

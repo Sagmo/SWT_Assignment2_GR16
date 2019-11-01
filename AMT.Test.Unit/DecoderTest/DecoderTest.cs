@@ -80,6 +80,7 @@ namespace AMT.Test.Unit
         }
 
         [TestCase("ABC123", "1", "2", "3", "2019")]
+        [TestCase("CDE456", "20", "30", "40", "201910")]
         public void DecodeData_DecodeString_DecodeSuccess(string tag, string xCoo, string yCoo, string altitude, string timeStamp)
         {
             var expectedResult = new List<string>() { tag, xCoo, yCoo, altitude, timeStamp };
