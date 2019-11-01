@@ -6,8 +6,8 @@ namespace ATM_1
 {
     interface IWriter
     {
-        void WriteFile(ITrack track);
-        void WriteConsole(ITrack track);
+        void WriteFile(List<ITrack> list);
+        void WriteConsole(List<ITrack> list);
 
         void WriteSeperationConsole(List<ITrack> list);
     }
