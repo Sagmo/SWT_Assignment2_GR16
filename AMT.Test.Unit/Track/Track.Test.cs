@@ -10,6 +10,7 @@ using TransponderReceiver;
 
 namespace AMT.Test.Unit
 {
+    [TestFixture]
     public class TrackTest
     {
         private Track _uut;

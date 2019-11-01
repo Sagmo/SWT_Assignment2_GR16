@@ -6,7 +6,7 @@ using ATM_1;
 
 namespace ATM_1
 {
-    class Log
+    public class Log
     {
         private IWriter writer;
         public Log(ISeperation seperation, IWriter writer, IDecoder decoder)
