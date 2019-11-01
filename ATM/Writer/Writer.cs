@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace ATM_1
 {
-    class Writer : IWriter
+    public class Writer : IWriter
     {
         private StreamWriter _sw;
         public Writer(string path)
