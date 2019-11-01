@@ -15,10 +15,17 @@ namespace AMT.Test.Unit
     {
         private Log _uut;
         private IWriter _iwriter;
+        private ISeperation _ispeeration;
+        private IDecoder _idecoder;
+        private ITrack _itrack;
 
         [SetUp]
         public void Setup()
         {
+            var writerList = new List<ITrack>()
+            {
+
+            };
 
         }
     }
