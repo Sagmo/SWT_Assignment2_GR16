@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Threading.Tasks;
+using AMT.Test.Unit.Seperation;
 using NSubstitute;
 using NUnit.Framework;
 using ATM_1;
@@ -18,6 +19,7 @@ namespace AMT.Test.Unit
         private IWriter _iwriter;
         private ISeperation _ispeeration;
         private IDecoder _idecoder;
+        private IObjStruct _iOjbStruct;
         private ITrack _itrack;
 
 
@@ -37,6 +39,8 @@ namespace AMT.Test.Unit
             _iwriter = Substitute.For<IWriter>();
             _itrack = Substitute.For<ITrack>();
 
+            _iOjbStruct = new FakeFlightObj();
+
             _uut = new Log(_ispeeration, _iwriter, _idecoder);
 
             _ispeeration.SeperationWarningEvent += (sender, args) => _seperationWarningBool = true;
@@ -50,7 +54,45 @@ namespace AMT.Test.Unit
         [Test]
         public void DecoderDecodeEvent_ListReceived_EventHandled()
         {
-            //_idecoder.DecodeEvent += Raise.EventWith<>();
+            ITrack track1 = new Track("1", "2", "3", "600", "5");
+            ITrack track2 = new Track("1", "2", "3", "600", "5");
+            
+            _iOjbStruct.Attach(track1);
+            _iOjbStruct.Attach(track2);
+
+            _idecoder.DecodeEvent += Raise.EventWith(new DecoderEventArgs {FlightObjectStruct = _iOjbStruct});
+            Assert.That(_decoderEventBool, Is.True);
         }
+
+        [Test]
+        public void SeperationEvent_SeperationReceived_EventHandled()
+        {
+            ITrack track1 = new Track("1", "2", "3", "600", "5");
+            ITrack track2 = new Track("1", "2", "3", "600", "5");
+
+            var flightSepList = new List<ITrack>() {track1, track2};
+
+
+            _ispeeration.SeperationWarningEvent += Raise.EventWith(new SeperationWarningEventArgs { SeperationList = flightSepList } );
+            Assert.That(_seperationWarningBool, Is.True);
+        }
+
+        /*
+        [Test]
+        public void DecoderDecodeEvent_ListWritten_EventHandled()
+        {
+            ITrack track1 = new Track("1", "2", "3", "600", "5");
+            ITrack track2 = new Track("1", "2", "3", "600", "5");
+
+            _iOjbStruct.Attach(track1);
+            _iOjbStruct.Attach(track2);
+
+            _idecoder.DecodeEvent += Raise.EventWith(new DecoderEventArgs { FlightObjectStruct = _iOjbStruct });
+            Assert.That(_iwriter.WriteConsole(_iOjbStruct), Is.EqualTo(_iOjbStruct.getlist()));
+        }
+        */
+
+
     }
 }
+ 
