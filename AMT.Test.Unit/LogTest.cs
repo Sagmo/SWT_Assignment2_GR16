@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NSubstitute;
 using NUnit.Framework;
 using ATM_1;
+using Castle.Core.Smtp;
 using TransponderReceiver;
 
 namespace AMT.Test.Unit
@@ -19,14 +20,37 @@ namespace AMT.Test.Unit
         private IDecoder _idecoder;
         private ITrack _itrack;
 
+
+        private bool _decoderEventBool = false;
+        private bool _seperationWarningBool = false;
+
+        private DecoderEventArgs _decoderEventArgs;
+        private SeperationWarningEventArgs _seperationWarningEventArgs;
+
+
         [SetUp]
         public void Setup()
         {
-            var writerList = new List<ITrack>()
-            {
+            _idecoder = Substitute.For<IDecoder>();
+            _ispeeration = Substitute.For<ISeperation>();
 
-            };
+            _iwriter = Substitute.For<IWriter>();
+            _itrack = Substitute.For<ITrack>();
 
+            _uut = new Log(_ispeeration, _iwriter, _idecoder);
+
+            _ispeeration.SeperationWarningEvent += (sender, args) => _seperationWarningBool = true;
+            _ispeeration.SeperationWarningEvent += (sender, args) => _seperationWarningEventArgs = args;
+
+            _idecoder.DecodeEvent += (sender, args) => _decoderEventBool = true;
+            _idecoder.DecodeEvent += (sender, args) => _decoderEventArgs = args;
+        }
+
+
+        [Test]
+        public void DecoderDecodeEvent_ListReceived_EventHandled()
+        {
+            //_idecoder.DecodeEvent += Raise.EventWith<>();
         }
     }
 }

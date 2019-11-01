@@ -32,5 +32,7 @@ namespace AMT.Test.Unit.Seperation
             return _objects;
         }
 
+        public void clearList() { }
+
     }
 }
