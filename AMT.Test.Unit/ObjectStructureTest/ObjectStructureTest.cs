@@ -14,6 +14,7 @@ namespace AMT.Test.Unit
     {
         private FlightObject _uut;
         private IVali _validator;
+        private ITrack _track;
         private bool _event;
 
         [SetUp]
@@ -23,10 +24,13 @@ namespace AMT.Test.Unit
 
         }
 
+        /*
         [Test]
-        public void tetsstest()
+        public void Test_mer()
         {
-            
+            _uut = new FlightObject(_validator);
+            _uut.Attach();
         }
+        */
     }
 }
