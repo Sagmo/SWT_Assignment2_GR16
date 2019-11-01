@@ -12,12 +12,8 @@ namespace AMT.Test.Unit
 {
     public class TrackTest
     {
-        private Track uut;
-        private string DummyTag = "ATR423";
-        private string DummyYCord = "39405";
-        private string DummyXCord = "12932";
-        private string DummyAltitude = "14000";
-        private string DummyDate = "2018051563055";
+        private Track _uut;
+        
         [SetUp]
         public void Setup()
         {
@@ -25,11 +21,13 @@ namespace AMT.Test.Unit
 
         }
 
-        [TestCase("ATR423", "39405")]
-        [TestCase("ATR500")]
+        [TestCase("ATR423", "39405", "12932", "14000", "2018051563055")]
+        [TestCase("ATR500", "39405", "12932", "14000", "2018051563055")]
         public void TestTrackTag(string tag, string xCoo, string yCoo, string aptitude, string timeStamp)
         {
 
+            _uut = new Track(tag, xCoo, yCoo, aptitude, timeStamp);
+            Assert.That(_uut.Tag, Is.EqualTo(tag));
         }
     }
 }
