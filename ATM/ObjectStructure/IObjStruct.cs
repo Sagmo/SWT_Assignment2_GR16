@@ -9,6 +9,8 @@ namespace ATM_1
         void Detach(ITrack flightTrack);
         bool CheckExist(string newTag);
 
+        void clearList();
+
         List<ITrack> getlist();
 
         //event EventHandler<ObjectEventArgs> ObjectEvent;

@@ -27,6 +27,14 @@ namespace ATM_1
             }
         }
 
+        public void clearList()
+        {
+            foreach (ITrack e in _objects)
+            {
+                _objects.Remove(e);
+            }
+        }
+
         public void Detach(ITrack flightTrack)
         {
             _objects.Remove(flightTrack);
