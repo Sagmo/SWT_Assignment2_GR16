@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using System.Threading.Tasks;
-
+﻿using System.Collections.Generic;
+using ATM_1;
 using NSubstitute;
 using NUnit.Framework;
-using ATM_1;
 using TransponderReceiver;
 
-namespace AMT.Test.Unit
+namespace AMT.Test.Unit.DecoderTest
 {
     [TestFixture]
     public class DecoderTest

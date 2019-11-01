@@ -35,8 +35,8 @@ namespace AMT.Test.Unit.Seperation
         [Test]
         public void DecodeEvent_FlightIsAdded_EventIsHandled()
         { ;
-            ITrack track1 = new Track("1", "2", "3", "600", "5");
-            ITrack track2 = new Track("1", "2", "3", "600", "5");
+            ITrack track1 = new ATM_1.Track("1", "2", "3", "600", "5");
+            ITrack track2 = new ATM_1.Track("1", "2", "3", "600", "5");
             _opj.Attach(track1);
             _opj.Attach(track2);
 
@@ -47,8 +47,8 @@ namespace AMT.Test.Unit.Seperation
         [Test]
         public void HandleDecodeEvent_FlightsReceived_ListOfFlightReceived()
         {
-            _opj.Attach(new Track("1", "2", "3", "600", "5"));
-            _opj.Attach(new Track("1", "2", "3", "600", "5"));
+            _opj.Attach(new ATM_1.Track("1", "2", "3", "600", "5"));
+            _opj.Attach(new ATM_1.Track("1", "2", "3", "600", "5"));
             _decoder.DecodeEvent += Raise.EventWith(new DecoderEventArgs { FlightObjectStruct = _opj });
             Assert.That(_decoderEventArgs.FlightObjectStruct, Is.EqualTo(_opj));
         }
@@ -56,8 +56,8 @@ namespace AMT.Test.Unit.Seperation
         [Test]
         public void CheckForSeparation_FlightAreInSeparation_EventIsRaised()
         {
-            _opj.Attach(new Track("thg", "6000", "5800", "10000", "20151006213456789"));
-            _opj.Attach(new Track("abc", "6000", "5800", "10000", "20151006213456781"));
+            _opj.Attach(new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789"));
+            _opj.Attach(new ATM_1.Track("abc", "6000", "5800", "10000", "20151006213456781"));
 
             _uut.CheckSeperation(_opj.getlist());
             Assert.That(_seperationWarningEventArgs, Is.Not.Null);
@@ -66,8 +66,8 @@ namespace AMT.Test.Unit.Seperation
         [Test]
         public void CheckForSeparation_FlightAreInSeparation_ListsEquivalent()
         {
-            _opj.Attach(new Track("thg", "6000", "5800", "10000", "20151006213456789"));
-            _opj.Attach(new Track("abc", "6000", "5800", "10000", "20151006213456781"));
+            _opj.Attach(new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789"));
+            _opj.Attach(new ATM_1.Track("abc", "6000", "5800", "10000", "20151006213456781"));
 
             _uut.CheckSeperation(_opj.getlist());
             Assert.That(_seperationWarningEventArgs.SeperationList, Is.EquivalentTo(_opj.getlist()));
