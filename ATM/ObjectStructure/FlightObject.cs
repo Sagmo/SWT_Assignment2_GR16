@@ -20,7 +20,7 @@ namespace ATM_1
             {
                 if(CheckExist(flightTrack.Tag))
                 {
-                    Detach(flightTrack);
+                    _objects.RemoveAll(item => item.Tag == flightTrack.Tag);
                 }
                 
                 _objects.Add(flightTrack);
