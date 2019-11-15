@@ -20,11 +20,12 @@ namespace ATM_1
         }
         public void WriteFile(List<ITrack> list)
         {
-            string path = "log.txt";
             const string dateFormat = "yyyyMMddHHmmssfff";
             CultureInfo cultureInfo = new CultureInfo("da-DK");
-            var timestamp = DateTime.ParseExact(list[0].TimeStamp, dateFormat, cultureInfo);
-            _sw.WriteLine($"[{list[0].Tag}]\t" + $"[{list[1].Tag}]\t" + $"[{timestamp}]\t");
+            var timestamp1 = DateTime.ParseExact(list[0].TimeStamp, dateFormat, cultureInfo);
+            var timestamp2 = DateTime.ParseExact(list[1].TimeStamp, dateFormat, cultureInfo);
+            _sw.WriteLine("Seperation: Tag1: {0}, Tag2: {1}, Timestamp1: {2}, Timestamp2: {3}", list[0].Tag, list[1].Tag,
+                timestamp1, timestamp2);
             _sw.Flush();
         }
 
@@ -40,6 +41,8 @@ namespace ATM_1
                 Console.WriteLine($"[{track.Tag}]\t" +
                                   $"[{track.xCoordinate}:{track.yCoordinate}]\t" +
                                   $"[{track.Altitude}]\t" +
+                                  $"[{track.CompassCourse}]\t" +
+                                  $"[{track.HorizontalVelocity}]\t" +
                                   $"[{timestamp}]\t");
             }
         }
@@ -50,7 +53,7 @@ namespace ATM_1
             CultureInfo cultureInfo = new CultureInfo("da-DK");
             var timestamp1 = DateTime.ParseExact(list[0].TimeStamp, dateFormat, cultureInfo);
             var timestamp2 = DateTime.ParseExact(list[1].TimeStamp, dateFormat, cultureInfo);
-            Console.Clear();
+
             Console.WriteLine("Seperation: Tag1: {0}, Tag2: {1}, Timestamp1: {2}, Timestamp2: {3}", list[0].Tag, list[1].Tag,
                 timestamp1, timestamp2);
         }
