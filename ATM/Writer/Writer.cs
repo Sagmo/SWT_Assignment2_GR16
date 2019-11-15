@@ -50,9 +50,7 @@ namespace ATM_1
         {
             var timestamp1 = DateTime.ParseExact(list[0].TimeStamp, DateFormat, _cultureInfo);
             var timestamp2 = DateTime.ParseExact(list[1].TimeStamp, DateFormat, _cultureInfo);
-
             Console.WriteLine($"Seperation: [{list[0].Tag} & {list[1].Tag}], [Timestamp1: {timestamp1}, Timestamp2: {timestamp2}]");
-            
         }
 
     }
