@@ -30,12 +30,8 @@ namespace ATM_1
                 
                 _objects.Add(flightTrack);
             }
-            /*
-            else if( _objects.Find(x => x.Tag.Contains(flightTrack.Tag)) != null ) 
-            {
-                 Detach(flightTrack);
-            }
-            */
+            else if(CheckExist(flightTrack.Tag))
+                _objects.RemoveAll(item => item.Tag == flightTrack.Tag);
         }
 
         public ITrack CalculateSpeed(ITrack newTrack)
