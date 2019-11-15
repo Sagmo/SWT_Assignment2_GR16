@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ATM_1
 {
@@ -31,6 +32,27 @@ namespace ATM_1
                  Detach(flightTrack);
             }
             */
+        }
+
+        public ITrack CalculateSpeed(ITrack track)
+        {
+            var flightTrack = _objects.FirstOrDefault(o => o.Tag == track.Tag);
+            
+            //if (flightTrack == null) return track;
+
+            var posChange = new
+            {
+                xSpeed = track.xCoordinate - flightTrack.xCoordinate,
+                ySpeed = track.yCoordinate - flightTrack.yCoordinate
+            };
+
+            var timeChange = new
+            {
+                time1 = track.TimeStamp - flightTrack.TimeStamp,
+                time2 =
+            };
+
+            return flightTrack;
         }
 
         public void clearList()
