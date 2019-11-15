@@ -16,7 +16,8 @@ namespace ATM_1
         readonly CultureInfo _cultureInfo = new CultureInfo("da-DK");
         public Writer(string path)
         {
-            path = path + DateTime.Now;
+            DateTime now = DateTime.Now;
+            
             _sw = File.CreateText(path);
             _sw.Close();
             _sw = new StreamWriter(path);
@@ -26,8 +27,7 @@ namespace ATM_1
             
             var timestamp1 = DateTime.ParseExact(list[0].TimeStamp, DateFormat, _cultureInfo);
             var timestamp2 = DateTime.ParseExact(list[1].TimeStamp, DateFormat, _cultureInfo);
-            _sw.WriteLine("Seperation: [Tag1: {0}, Tag2: {1}], [Timestamp1: {2}, Timestamp2: {3}]", list[0].Tag, list[1].Tag,
-                timestamp1, timestamp2);
+            _sw.WriteLine($"Seperation: [{list[0]} & {list[1].Tag}], [Timestamp1: {timestamp1}, Timestamp2: {timestamp2}]");
             _sw.Flush();
         }
 
@@ -51,8 +51,8 @@ namespace ATM_1
             var timestamp1 = DateTime.ParseExact(list[0].TimeStamp, DateFormat, _cultureInfo);
             var timestamp2 = DateTime.ParseExact(list[1].TimeStamp, DateFormat, _cultureInfo);
 
-            Console.WriteLine("Seperation: [Tag1: {0}, Tag2: {1}], [Timestamp1: {2}, Timestamp2: {3}]", list[0].Tag, list[1].Tag,
-                timestamp1, timestamp2);
+            Console.WriteLine($"Seperation: [{list[0]} & {list[1].Tag}], [Timestamp1: {timestamp1}, Timestamp2: {timestamp2}]");
+            
         }
 
     }
