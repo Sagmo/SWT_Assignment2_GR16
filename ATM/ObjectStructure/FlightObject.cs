@@ -8,7 +8,9 @@ namespace ATM_1
     public class FlightObject : IObjStruct
     {
         private List<ITrack> _objects;
-        IVali _vali; 
+        IVali _vali;
+        readonly CultureInfo _cultureInfo = new CultureInfo("da-DK");
+        const string DateFormat = "yyyyMMddHHmmssfff";
 
         public FlightObject(IVali vali)
         {
@@ -40,36 +42,28 @@ namespace ATM_1
         {
             var oldTrack = _objects.FirstOrDefault(o => o.Tag == newTrack.Tag);
             
-            //if (flightTrack == null) return track;
+            if (oldTrack == null) return newTrack;
 
-            var posChange = new
-            {
-                xChange = newTrack.xCoordinate - oldTrack.xCoordinate,
-                yChange = newTrack.yCoordinate - oldTrack.yCoordinate
-            };
+            var xChange = newTrack.xCoordinate - oldTrack.xCoordinate;
+            var yChange = newTrack.yCoordinate - oldTrack.yCoordinate;
 
-            
-            var timeChange = new
-            {
-                timeOld = DateTime.ParseExact(oldTrack.TimeStamp, "yyyymmddhhmmssfff", new CultureInfo("dk-DK")),
-                timeNew = DateTime.ParseExact(newTrack.TimeStamp, "yyyymmddhhmmssfff", new CultureInfo("dk-DK"))
-            };
+                DateTime timeOld = DateTime.ParseExact(oldTrack.TimeStamp, DateFormat, _cultureInfo);
+            DateTime timeNew = DateTime.ParseExact(newTrack.TimeStamp, DateFormat, _cultureInfo);
 
-            var time = (timeChange.timeNew - timeChange.timeOld).TotalSeconds;
+            var time = (timeNew - timeOld).TotalSeconds;
             
             
-            var distance = Math.Sqrt(Math.Pow(posChange.xChange, 2) + Math.Pow(posChange.yChange, 2));
-            double CompassDegree = ((Math.Atan2(posChange.yChange, posChange.xChange) * (180 / Math.PI)) - 90);
+            var distance = Math.Sqrt(Math.Pow(xChange, 2) + Math.Pow(yChange, 2));
+            double CompassDegree = ((Math.Atan2(yChange, xChange) * (180 / Math.PI)) - 90);
             
             //(CompassDegree < 0) ? CompassDegree = CompassDegree + 360 : CompassDegree;
             if (CompassDegree < 0)
                 CompassDegree += 360;
 
-            double Velocity;
-            (time == 0.00) ? throw new DivideByZeroException("Time is zero") : ( (time < 0) ? throw new Exception("Time is negative") : Velocity = distance / time) );
+            double Velocity = (time == 0.00) ? throw new DivideByZeroException("Time is zero") : ( (time < 0) ? throw new Exception("Time is negative") : Velocity = distance / time);
 
-            newTrack.HorizontalVelocity = Velocity;
-            newTrack.CompassCourse = CompassDegree;
+            newTrack.HorizontalVelocity = Math.Round(Velocity, 2);
+            newTrack.CompassCourse = Math.Round(CompassDegree, 2);
 
             _objects.RemoveAll(item => item.Tag == oldTrack.Tag);
 

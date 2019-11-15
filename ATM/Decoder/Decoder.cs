@@ -20,7 +20,7 @@ namespace ATM_1
         
         public void DecodeEventHandler(object sender, RawTransponderDataEventArgs e)
         {
-            _flightObj.clearList();
+            //_flightObj.clearList();
             e.TransponderData.ForEach(rawData => 
             {
                 var decodedDate = Decode(rawData);
