@@ -40,9 +40,9 @@ namespace ATM_1
                 var timestamp = DateTime.ParseExact(track.TimeStamp, dateFormat, cultureInfo);
                 Console.WriteLine($"[{track.Tag}]\t" +
                                   $"[{track.xCoordinate}:{track.yCoordinate}]\t" +
-                                  $"[{track.Altitude}]\t" +
-                                  $"[{track.CompassCourse}]\t" +
-                                  $"[{track.HorizontalVelocity}]\t" +
+                                  $"[{track.Altitude} meters]\t" +
+                                  $"[{track.CompassCourse} deg]\t" +
+                                  $"[{track.HorizontalVelocity} m/s]\t" +
                                   $"[{timestamp}]\t");
             }
         }
