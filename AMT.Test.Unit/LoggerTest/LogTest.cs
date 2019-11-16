@@ -94,9 +94,6 @@ namespace AMT.Test.Unit.LoggerTest
 
             Assert.That(_seperationWarningEventArgs.SeperationList, Is.EqualTo(flightSepList));
         }
-
-
-
     }
 }
  
