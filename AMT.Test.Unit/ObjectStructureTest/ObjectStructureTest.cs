@@ -64,7 +64,7 @@ namespace AMT.Test.Unit.ObjectStructureTest
         public void AttachTrackWithTagThatAlreadyExists()
         {
             ITrack track1 = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
-            ITrack track2 = new ATM_1.Track("thg", "7000", "5800", "10000", "20151006213456789");
+            ITrack track2 = new ATM_1.Track("thg", "7000", "5800", "10000", "20151006213456799");
             _uut.Attach(track1);
             _uut.Attach(track2);
             List<ITrack> list = new List<ITrack>(){track2};
