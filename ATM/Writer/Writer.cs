@@ -1,23 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
 using System.IO;
-using System.Text;
-using System.Runtime.CompilerServices;
-using System.Linq;
 
 namespace ATM_1
 {
     public class Writer : IWriter
     {
-        private StreamWriter _sw;
+        private readonly StreamWriter _sw;
         const string DateFormat = "yyyyMMddHHmmssfff";
         readonly CultureInfo _cultureInfo = new CultureInfo("da-DK");
         public Writer(string path)
         {
-            DateTime now = DateTime.Now;
-            
             _sw = File.CreateText(path);
             _sw.Close();
             _sw = new StreamWriter(path);
