@@ -56,7 +56,7 @@ namespace ATM_1
             if (CompassDegree < 0)
                 CompassDegree += 360;
 
-            double Velocity = (time == 0.00) ? throw new DivideByZeroException("Time is zero") : ( (time < 0) ? throw new Exception("Time is negative") : Velocity = distance / time);
+            double Velocity = (time == 0.00) ? throw new DivideByZeroException("Time is zero") : ( (time < 0) ? throw new Exception("Time is negative") : distance / time);
 
             newTrack.HorizontalVelocity = Math.Round(Velocity, 2);
             newTrack.CompassCourse = Math.Round(CompassDegree, 2);
