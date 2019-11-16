@@ -10,18 +10,14 @@ namespace AMT.Test.Unit.Writer
     public class WriterTest
     {
         private IWriter _uut;
-
+        private int count = 0;
         [SetUp]
         public void Setup()
         {
-            _uut = new ATM_1.Writer("test.txt");
+            count += 1;
+            _uut = new ATM_1.Writer($"test{count}.txt");
         }
 
-        [Test]
-        public void test_writeFile()
-        {
-
-        }
 
         [Test]
         public void writeConsole_ArgumentIsNull_ThrowsException()
