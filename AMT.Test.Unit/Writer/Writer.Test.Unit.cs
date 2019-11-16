@@ -1,11 +1,13 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ATM_1;
 using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 
 namespace AMT.Test.Unit.Writer
 {
@@ -19,7 +21,6 @@ namespace AMT.Test.Unit.Writer
         public void Setup()
         {
             _uut = new ATM_1.Writer("test.txt");
-            _ilog = Substitute.For<ILog>();
         }
 
         [Test]
@@ -31,17 +32,16 @@ namespace AMT.Test.Unit.Writer
         [Test]
         public void test_writeConsole()
         {
-            List<ITrack> list = new List<ITrack>();
-
-            ITrack track1 = new ATM_1.Track("1", "2", "3", "600", "5");
-            ITrack track2 = new ATM_1.Track("1", "2", "3", "600", "5");
-
-            list.Add(track1);
-            list.Add(track2);
-
-            
-            //Assert.That(_uut.WriteConsole(list), );
+            Assert.That(() => _uut.WriteConsole(null), Throws.Exception);
         }
+
+        [Test]
+        public void tetst()
+        {
+            List<ITrack> list = new List<ITrack> { new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789") };
+            Assert.DoesNotThrow(() => _uut.WriteConsole(list));
+        }
+
+
     }
 }
-*/
