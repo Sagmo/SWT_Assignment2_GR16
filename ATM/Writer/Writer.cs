@@ -8,13 +8,13 @@ namespace ATM_1
     public class Writer : IWriter
     {
         private StreamWriter _sw;
-        private readonly string path;
+        private readonly string _path;
         const string DateFormat = "yyyyMMddHHmmssfff";
         readonly CultureInfo _cultureInfo = new CultureInfo("da-DK");
         public Writer(string path)
         {
-            this.path = path;
-            _sw = File.CreateText(this.path);
+            _path = path;
+            _sw = File.CreateText(_path);
             _sw.Close();
             
         }
@@ -22,7 +22,7 @@ namespace ATM_1
         {
             if (list.Count > 0)
             {
-                _sw = File.AppendText(path);
+                _sw = File.AppendText(_path);
                 var timestamp1 = DateTime.ParseExact(list[0].TimeStamp, DateFormat, _cultureInfo);
                 var timestamp2 = DateTime.ParseExact(list[1].TimeStamp, DateFormat, _cultureInfo);
                 _sw.WriteLine(
