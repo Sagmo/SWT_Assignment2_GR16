@@ -24,9 +24,9 @@ namespace ATM_1
             {
                 var decodedDate = Decode(rawData);
                 _flightObj.Attach(new Track(decodedDate[0], decodedDate[1], decodedDate[2], decodedDate[3], decodedDate[4]));
-            });
-
-           OnDecoderEvent(new DecoderEventArgs { FlightObjectStruct = _flightObj });
+            }); 
+            if(_flightObj.getlist().Count > 0)
+                OnDecoderEvent(new DecoderEventArgs { FlightObjectStruct = _flightObj });
         }
 
         public List<string> Decode(string msg)

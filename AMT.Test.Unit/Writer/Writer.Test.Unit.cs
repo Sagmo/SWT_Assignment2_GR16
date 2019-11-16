@@ -15,7 +15,8 @@ namespace AMT.Test.Unit.Writer
         public void Setup()
         {
             count += 1;
-            _uut = new ATM_1.Writer($"test{count}.txt");
+            //_uut = new ATM_1.Writer($"test{count}.txt"); // Need to make a whole new writer for each test, because Nunit & Resharper is stupid...
+            _uut = new ATM_1.Writer("test.txt");
         }
 
 

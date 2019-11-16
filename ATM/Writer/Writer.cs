@@ -7,24 +7,28 @@ namespace ATM_1
 {
     public class Writer : IWriter
     {
-        private readonly StreamWriter _sw;
+        private StreamWriter _sw;
+        private readonly string path;
         const string DateFormat = "yyyyMMddHHmmssfff";
         readonly CultureInfo _cultureInfo = new CultureInfo("da-DK");
         public Writer(string path)
         {
-            _sw = File.CreateText(path);
+            this.path = path;
+            _sw = File.CreateText(this.path);
             _sw.Close();
-            _sw = new StreamWriter(path);
+            
         }
         public void WriteFile(List<ITrack> list)
         {
             if (list.Count > 0)
             {
+                _sw = File.AppendText(path);
                 var timestamp1 = DateTime.ParseExact(list[0].TimeStamp, DateFormat, _cultureInfo);
                 var timestamp2 = DateTime.ParseExact(list[1].TimeStamp, DateFormat, _cultureInfo);
                 _sw.WriteLine(
                     $"Seperation: [{list[0].Tag} & {list[1].Tag}], [Timestamp1: {timestamp1}, Timestamp2: {timestamp2}]");
                 _sw.Flush();
+                _sw.Close();
             }
             else
             {
