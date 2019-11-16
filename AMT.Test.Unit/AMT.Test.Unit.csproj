@@ -68,7 +68,7 @@
     <Compile Include="LoggerTest\LogTest.cs" />
     <Compile Include="ObjectStructureTest\ObjectStructureTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Seperation\FakeFlightObj.cs" />
+    <Compile Include="Fakes\FakeFlightObj.cs" />
     <Compile Include="Seperation\Seperation.Test.Unit.cs" />
     <Compile Include="Track\Track.Test.cs" />
     <Compile Include="Validation\ValidationTest.cs" />

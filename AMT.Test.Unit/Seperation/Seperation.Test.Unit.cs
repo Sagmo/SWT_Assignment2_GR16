@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AMT.Test.Unit.Fakes;
 using ATM_1;
 using NSubstitute;
 using NSubstitute.Extensions;
