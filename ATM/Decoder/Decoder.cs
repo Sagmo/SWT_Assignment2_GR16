@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-
 using TransponderReceiver;
 
 namespace ATM_1
@@ -33,14 +31,6 @@ namespace ATM_1
         {
             return new List<string>(msg.Split(';'));
         }
-
-        // TODO Finishc emttyplist function, or remove this
-        /*
-        public void EmptyList(IObjStruct flightObj)
-        {
-            
-        }
-        */
 
         protected virtual void OnDecoderEvent(DecoderEventArgs e)
         {
