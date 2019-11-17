@@ -21,15 +21,15 @@ namespace AMT.Test.Unit.Airspace
         [Test]
         public void TestAirspaceGetX()
         {
-            var x = _airSpace._X;
-            Assert.That(_airSpace._X,Is.EqualTo(x));
+            var x = _airSpace._MaxX;
+            Assert.That(_airSpace._MaxX,Is.EqualTo(x));
         }
 
         [Test]
         public void TestAirspaceGetY()
         {
-            var y = _airSpace._Y;
-            Assert.That(_airSpace._Y,Is.EqualTo(y));
+            var y = _airSpace._MaxY;
+            Assert.That(_airSpace._MaxX,Is.EqualTo(y));
         }
 
         [Test]
