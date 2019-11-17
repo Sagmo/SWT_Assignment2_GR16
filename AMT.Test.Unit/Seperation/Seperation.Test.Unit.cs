@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AMT.Test.Unit.Fakes;
 using ATM_1;
 using NSubstitute;
-using NSubstitute.Extensions;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
 
 namespace AMT.Test.Unit.Seperation
 {
@@ -19,11 +14,12 @@ namespace AMT.Test.Unit.Seperation
         private DecoderEventArgs _decoderEventArgs;
         private SeperationWarningEventArgs _seperationWarningEventArgs;
         private IObjStruct _opj;
-        private bool _eventHandled = false;
+        private bool _eventHandled;
 
         [SetUp]
         public void Setup()
         {
+            _eventHandled = false;
             _seperationWarningEventArgs = null;
             _decoder = Substitute.For<IDecoder>();
             _opj = new FakeFlightObj();
@@ -35,7 +31,7 @@ namespace AMT.Test.Unit.Seperation
 
         [Test]
         public void DecodeEvent_FlightIsAdded_EventIsHandled()
-        { ;
+        {
             ITrack track1 = new ATM_1.Track("1", "2", "3", "600", "5");
             ITrack track2 = new ATM_1.Track("1", "2", "3", "600", "5");
             _opj.Attach(track1);
@@ -73,5 +69,28 @@ namespace AMT.Test.Unit.Seperation
             _uut.CheckSeperation(_opj.getlist());
             Assert.That(_seperationWarningEventArgs.SeperationList, Is.EquivalentTo(_opj.getlist()));
         }
+
+        [Test]
+        public void CheckForSeparation_FlightAreNotInSeparation_EventNotRaised()
+        {
+            _opj.Attach(new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789"));
+            _opj.Attach(new ATM_1.Track("abc", "12000", "14000", "13000", "20151006213456781"));
+
+            _uut.CheckSeperation(_opj.getlist());
+            Assert.That(_seperationWarningEventArgs, Is.Null);
+        }
+
+        [Test]
+        public void CheckForSeparation_ArgumentListIsEmpty_ThrowException()
+        {
+            Assert.That(() => _uut.CheckSeperation(_opj.getlist()), Throws.TypeOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void CheckForSeparation_ArgumentIsNull_ThrowException()
+        {
+            Assert.That(() => _uut.CheckSeperation(null), Throws.TypeOf<NullReferenceException>());
+        }
+
     }
 }

@@ -21,30 +21,37 @@ namespace ATM_1
 
         public void CheckSeperation(List<ITrack> e)
         {
-            foreach (var track in e)
+            if(e.Count > 0)
             {
-                foreach (var otherTrack in e)
+                foreach (var track in e)
                 {
-                    if (track.Tag == otherTrack.Tag) continue;
-
-                    var delta = new
+                    foreach (var otherTrack in e)
                     {
-                        X = track.xCoordinate - otherTrack.xCoordinate,
-                        Y = track.yCoordinate - otherTrack.yCoordinate,
-                    };
+                        if (track.Tag == otherTrack.Tag) continue;
 
-                    var distance = new
-                    {
-                        Horizontal = Math.Sqrt(Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2)),
-                        Vertical = Math.Abs(track.Altitude - otherTrack.Altitude)
-                    };
+                        var delta = new
+                        {
+                            X = track.xCoordinate - otherTrack.xCoordinate,
+                            Y = track.yCoordinate - otherTrack.yCoordinate,
+                        };
 
-                    if (distance.Horizontal < 5000 && distance.Vertical < 300)
-                    {
-                        var flightsInSeparation = new List<ITrack>() { track, otherTrack };
-                        OnSeperationWarning(new SeperationWarningEventArgs { SeperationList = flightsInSeparation });
+                        var distance = new
+                        {
+                            Horizontal = Math.Sqrt(Math.Pow(delta.X, 2) + Math.Pow(delta.Y, 2)),
+                            Vertical = Math.Abs(track.Altitude - otherTrack.Altitude)
+                        };
+
+                        if (distance.Horizontal < 5000 && distance.Vertical < 300)
+                        {
+                            var flightsInSeparation = new List<ITrack>() {track, otherTrack};
+                            OnSeperationWarning(new SeperationWarningEventArgs {SeperationList = flightsInSeparation});
+                        }
                     }
                 }
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(e));
             }
         }
 
