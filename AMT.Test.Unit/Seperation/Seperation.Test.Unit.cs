@@ -115,6 +115,9 @@ namespace AMT.Test.Unit.Seperation
         // TEST BOUNDARY VALUE FOR Y, HEIGHT DIFF > 300
         [TestCase("CDE", "7000", "9582", "1500", "20151006213456789", false)]
         [TestCase("CDE", "7000", "9583", "1500", "20151006213456789", false)]
+        // NO SEPERATION HORIZONTAL, SEPERATION ALTITUDE
+        [TestCase("CDE", "7000", "10000", "1100", "20151006213456789", false)]
+        [TestCase("CDE", "10000", "7000", "1100", "20151006213456789", false)]
         /*
          [TestCase("CDE", "11900", "7000", "9700", "20151006213456789", false)]
         [TestCase("CDE", "10899", "7000", "9699", "20151006213456789", false)]
