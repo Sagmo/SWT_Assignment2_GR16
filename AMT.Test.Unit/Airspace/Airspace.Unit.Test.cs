@@ -15,7 +15,7 @@ namespace AMT.Test.Unit.Airspace
         [SetUp]
         public void Setup()
         {
-            _airSpace = new AirSpace(80000,80000,500,20000);
+            _airSpace = new AirSpace(10000,90000,10000,90000,500,20000);
         }
 
         [Test]
