@@ -35,5 +35,10 @@ namespace AMT.Test.Unit.Fakes
 
         public void clearList() { }
 
+        public ITrack CalculateSpeed(ITrack newTrack)
+        {
+            return null;
+        }
+
     }
 }
