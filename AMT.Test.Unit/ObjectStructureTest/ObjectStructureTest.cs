@@ -83,5 +83,22 @@ namespace AMT.Test.Unit.ObjectStructureTest
 
             Assert.That(_uut.getlist(),Is.Empty);
         }
+
+        [Test]
+        public void calculateSpeed_FirstOfTrackAdded_SpeedIs0()
+        {
+            ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
+            Assert.That(_uut.CalculateSpeed(track).HorizontalVelocity, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void calculateSpeed_FirstOfTrackAdded_SpeedIs100()
+        {
+            ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
+            ITrack track1 = new ATM_1.Track("thg", "6100", "5800", "10000", "20151006213457789");
+            _uut.Attach(track);
+            _uut.Attach(track1);
+            Assert.That(_uut.getlist()[0].HorizontalVelocity, Is.EqualTo(100));
+        }
     }
 }

@@ -19,8 +19,13 @@ namespace AMT.Test.Unit.Fakes
 
         public void Detach(ITrack track) { }
 
-        public bool CheckExist(string e)
+        public bool CheckExist(string newTag)
         {
+            foreach (ITrack e in _objects)
+            {
+                if (e.Tag == newTag)
+                    return true;
+            }
             return false;
         }
         public List<ITrack> getlist()
@@ -29,6 +34,11 @@ namespace AMT.Test.Unit.Fakes
         }
 
         public void clearList() { }
+
+        public ITrack CalculateSpeed(ITrack newTrack)
+        {
+            return null;
+        }
 
     }
 }

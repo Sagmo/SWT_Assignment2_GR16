@@ -8,7 +8,7 @@ namespace ATM_1
         void Attach(ITrack flightTrack);
         void Detach(ITrack flightTrack);
         bool CheckExist(string newTag);
-
+        ITrack CalculateSpeed(ITrack newTrack);
         void clearList();
 
         List<ITrack> getlist();
