@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ATM_1;
 using NSubstitute;
 using NUnit.Framework;
@@ -88,11 +89,12 @@ namespace AMT.Test.Unit.ObjectStructureTest
         public void calculateSpeed_FirstOfTrackAdded_SpeedIs0()
         {
             ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
-            Assert.That(_uut.CalculateSpeed(track).HorizontalVelocity, Is.EqualTo(0));
+            _uut.Attach(track);
+            Assert.That(_uut.getlist()[0].HorizontalVelocity, Is.EqualTo(0));
         }
 
-        [Test]
-        public void calculateSpeed_FirstOfTrackAdded_SpeedIs100()
+        [Test] //Track with tag: thg, has moved 100m over a 1 second period. Expected speed to be 100 m/s.
+        public void calculateSpeed_TrackWithUpdatedPos_SpeedIs100()
         {
             ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
             ITrack track1 = new ATM_1.Track("thg", "6100", "5800", "10000", "20151006213457789");
@@ -100,5 +102,84 @@ namespace AMT.Test.Unit.ObjectStructureTest
             _uut.Attach(track1);
             Assert.That(_uut.getlist()[0].HorizontalVelocity, Is.EqualTo(100));
         }
+
+        [Test] //Track with tag: thg has moved 100m in a 0 second period. Exception is thrown.
+        public void calculateSpeed_100m_0seconds_ExceptionIsThrown()
+        {
+            ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
+            ITrack track1 = new ATM_1.Track("thg", "6100", "5800", "10000", "20151006213456789");
+            _uut.Attach(track);
+            Assert.That(() => _uut.Attach(track1), Throws.TypeOf<DivideByZeroException>());
+        }
+
+        [Test] //Track with tag: thg has moved 100m in a -1 second period. Exception is thrown.
+        public void calculateSpeed_100m_NegativeSeconds_ExceptionIsThrown()
+        {
+            ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
+            ITrack track1 = new ATM_1.Track("thg", "6100", "5800", "10000", "20151006213455789");
+            _uut.Attach(track);
+            Assert.That(() => _uut.Attach(track1), Throws.Exception);
+        }
+
+        [Test]
+        public void calculateSpeed_FirstOfTrackAdded_SpeedIs0_ExplicitTest()
+        {
+            ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
+            Assert.That(_uut.CalculateSpeed(track).HorizontalVelocity, Is.EqualTo(0));
+        }
+
+        [Test] //Track with tag: thg, has moved 100m over a 1 second period. Expected speed to be 100 m/s.
+        public void calculateSpeed_TrackWithUpdatedPos_SpeedIs100_ExplicitTest()
+        {
+            ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
+            ITrack track1 = new ATM_1.Track("thg", "6100", "5800", "10000", "20151006213457789");
+            _uut.Attach(track);
+            Assert.That(_uut.CalculateSpeed(track1).HorizontalVelocity, Is.EqualTo(100));
+        }
+
+        [Test] //Track with tag: thg has moved 100m in a 0 second period. Exception is thrown.
+        public void calculateSpeed_100m_0seconds_ExceptionIsThrown_ExplicitTest()
+        {
+            ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
+            ITrack track1 = new ATM_1.Track("thg", "6100", "5800", "10000", "20151006213456789");
+            _uut.Attach(track);
+            Assert.That(() => _uut.CalculateSpeed(track1), Throws.TypeOf<DivideByZeroException>());
+        }
+
+        [Test] //Track with tag: thg has moved 100m in a -1 second period. Exception is thrown.
+        public void calculateSpeed_100m_NegativeSeconds_ExceptionIsThrown_ExplicitTest()
+        {
+            ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
+            ITrack track1 = new ATM_1.Track("thg", "6100", "5800", "10000", "20151006213455789");
+            _uut.Attach(track);
+            Assert.That(() => _uut.CalculateSpeed(track1), Throws.Exception);
+        }
+
+        [Test]
+        public void calculateSpeed_FirstTrackAdded_CompassCourseIs0()
+        {
+            ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
+            _uut.Attach(track);
+            Assert.That(_uut.getlist()[0].CompassCourse, Is.EqualTo(0));
+        }
+
+        [Test]
+        [TestCase("6000", "5900", 90)]
+        [TestCase("6100", "5900", 45)]
+        [TestCase("6250", "6000", 38.66)]
+        [TestCase("5450", "6200", 143.97)]
+        [TestCase("6050", "4500", 272.2)]
+        [TestCase("6100","5800", 0)]
+        [TestCase("63628", "32187", 24.6)]
+        public void calculateSpeed_TrackWithUpdatedCompassCourse_CompassCourseIs45(string x, string y, double deg)
+        {
+            ITrack track = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
+            ITrack track1 = new ATM_1.Track("thg", x, y, "10000", "20151006213457789");
+            _uut.Attach(track);
+            _uut.Attach(track1);
+            Assert.That(_uut.getlist()[0].CompassCourse, Is.EqualTo(deg));
+        }
+
+
     }
 }
