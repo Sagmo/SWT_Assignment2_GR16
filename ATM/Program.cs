@@ -11,7 +11,7 @@ namespace ATM_1
         static void Main(string[] args)
         {
 
-            IAirSpace _airSpace   = new AirSpace(80000, 80000, 500, 20000);
+            IAirSpace _airSpace   = new AirSpace(10000, 90000, 10000, 90000, 500, 20000);
             IObjStruct _objStruct = new FlightObject(new Vali(_airSpace));
             IDecoder _decoder     = new Decoder(_objStruct, TransponderReceiverFactory.CreateTransponderDataReceiver());
             IWriter _writer = new Writer("log.txt");

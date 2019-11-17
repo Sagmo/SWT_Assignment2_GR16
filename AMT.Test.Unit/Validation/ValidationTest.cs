@@ -12,7 +12,7 @@ namespace AMT.Test.Unit.Validation
     [TestFixture]
     class ValidationTest
     {
-        private IVali _vali;
+        private IVali _uut;
         private IAirSpace _airSpace;
 
         [SetUp]
@@ -21,24 +21,36 @@ namespace AMT.Test.Unit.Validation
             _airSpace = Substitute.For<IAirSpace>();
             _airSpace._LowerBoundary.Returns(500);
             _airSpace._UpperBoundary.Returns(20000);
-            _airSpace._X.Returns(80000);
-            _airSpace._Y.Returns(80000);
-            _vali = new Vali(_airSpace);
+            _airSpace._MaxX.Returns(80000);
+            _airSpace._MaxY.Returns(80000);
+            _uut = new Vali(_airSpace);
         }
 
-        [Test]
-        public void ValidateTrackTest_Passed()
+        [TestCase("ATR423", "80000", "50000", "1000", "2018051563055")]
+        [TestCase("ATR423", "50000", "80000", "1000", "2018051563055")]
+        [TestCase("ATR423", "50000", "50000", "500", "2018051563055")]
+        [TestCase("ATR423", "50000", "50000", "20000", "2018051563055")]
+        [TestCase("ATR423", "0", "0", "15000", "2018051563055")]
+        public void ValidateTrackTest_Passed(string tag, string xCoo, string yCoo, string aptitude, string timeStamp)
         {
-            ITrack track = new ATM_1.Track("ATR423", "39405", "12932", "14000", "2018051563055");
-            bool result = _vali.Validate(track);
+            //ITrack track = new ATM_1.Track("ATR423", "39405", "12932", "14000", "2018051563055");
+            ITrack track = new ATM_1.Track(tag, xCoo, yCoo, aptitude, timeStamp);
+
+            bool result = _uut.Validate(track);
             Assert.That(result, Is.True);
         }
 
-        [Test]
-        public void ValidateTrackTest_Failed()
+        [TestCase("ATR423", "80001", "50000", "1000", "2018051563055")]
+        [TestCase("ATR423", "50000", "80001", "1000", "2018051563055")]
+        [TestCase("ATR423", "50000", "50000", "499", "2018051563055")]
+        [TestCase("ATR423", "50000", "50000", "499", "2018051563055")]
+        [TestCase("ATR423", "50000", "50000", "20001", "2018051563055")]
+        [TestCase("ATR423", "50000", "50000", "20001", "2018051563055")]
+        public void ValidateTrackTest_Failed(string tag, string xCoo, string yCoo, string aptitude, string timeStamp)
         {
-            ITrack track = new ATM_1.Track("ATR423", "39405", "12932", "250", "2018051563055");
-            bool result = _vali.Validate(track);
+            ITrack track = new ATM_1.Track(tag, xCoo, yCoo, aptitude, timeStamp);
+
+            bool result = _uut.Validate(track);
             Assert.That(result, Is.False);
         }
     }

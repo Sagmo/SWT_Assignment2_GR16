@@ -15,8 +15,8 @@ namespace ATM_1
         {
             // Compare
             bool altitude = (track.Altitude >= _airSpace._LowerBoundary && track.Altitude <= _airSpace._UpperBoundary);
-            bool x = (track.xCoordinate <= _airSpace._X && track.xCoordinate >= 0);
-            bool y = (track.yCoordinate <= _airSpace._Y && track.yCoordinate >= 0);
+            bool x = (track.xCoordinate <= _airSpace._MaxX && track.xCoordinate >= _airSpace._MinX);
+            bool y = (track.yCoordinate <= _airSpace._MaxY && track.yCoordinate >= _airSpace._MinY);
             return (altitude && x && y);
         }
     }
