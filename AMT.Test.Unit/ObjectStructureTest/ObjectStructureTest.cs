@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using ATM_1;
 using NSubstitute;
 using NUnit.Framework;
@@ -74,7 +73,7 @@ namespace AMT.Test.Unit.ObjectStructureTest
         }
 
         [Test]
-        public void AttachTrackWithTagThatAlreadyExists_TrackHasLeftAirspace()
+        public void AttachTrackWithTagThatAlreadyExists_TrackHasLeftAirspace_TrackRemovedFromList()
         {
             ITrack track1 = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
             ITrack track2 = new ATM_1.Track("thg", "7000", "5800", "30000", "20151006213456799");
