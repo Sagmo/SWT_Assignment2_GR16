@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using ATM_1;
 using NSubstitute;
 using NUnit.Framework;
@@ -70,6 +71,17 @@ namespace AMT.Test.Unit.ObjectStructureTest
             _uut.Attach(track2);
             List<ITrack> list = new List<ITrack>(){track2};
             Assert.That(_uut.getlist(),Is.EquivalentTo(list));
+        }
+
+        [Test]
+        public void AttachTrackWithTagThatAlreadyExists_TrackHasLeftAirspace()
+        {
+            ITrack track1 = new ATM_1.Track("thg", "6000", "5800", "10000", "20151006213456789");
+            ITrack track2 = new ATM_1.Track("thg", "7000", "5800", "30000", "20151006213456799");
+            _uut.Attach(track1);
+            _validator.Validate(Arg.Any<ITrack>()).Returns(false);
+            _uut.Attach(track2);
+            Assert.That(_uut.getlist().Contains(track2), Is.False);
         }
 
         [Test]
