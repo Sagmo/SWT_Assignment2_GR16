@@ -43,14 +43,14 @@ namespace ATM_1
             var xChange = newTrack.xCoordinate - oldTrack.xCoordinate;
             var yChange = newTrack.yCoordinate - oldTrack.yCoordinate;
 
-                DateTime timeOld = DateTime.ParseExact(oldTrack.TimeStamp, DateFormat, _cultureInfo);
+            DateTime timeOld = DateTime.ParseExact(oldTrack.TimeStamp, DateFormat, _cultureInfo);
             DateTime timeNew = DateTime.ParseExact(newTrack.TimeStamp, DateFormat, _cultureInfo);
 
             var time = (timeNew - timeOld).TotalSeconds;
             
             
             var distance = Math.Sqrt(Math.Pow(xChange, 2) + Math.Pow(yChange, 2));
-            double CompassDegree = ((Math.Atan2(yChange, xChange) * (180 / Math.PI)) - 90);
+            double CompassDegree = ((Math.Atan2(yChange, xChange) * (180 / Math.PI)));
             
             //(CompassDegree < 0) ? CompassDegree = CompassDegree + 360 : CompassDegree;
             if (CompassDegree < 0)
