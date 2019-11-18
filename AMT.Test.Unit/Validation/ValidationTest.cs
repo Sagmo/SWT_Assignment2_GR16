@@ -21,8 +21,10 @@ namespace AMT.Test.Unit.Validation
             _airSpace = Substitute.For<IAirSpace>();
             _airSpace._LowerBoundary.Returns(500);
             _airSpace._UpperBoundary.Returns(20000);
-            _airSpace._MaxX.Returns(80000);
-            _airSpace._MaxY.Returns(80000);
+            _airSpace._MaxX.Returns(90000);
+            _airSpace._MaxY.Returns(90000);
+			_airSpace._MinX.Returns(10000);
+			_airSpace._MinY.Returns(10000);
             _uut = new Vali(_airSpace);
         }
 
