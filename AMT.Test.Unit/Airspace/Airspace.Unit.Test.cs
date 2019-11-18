@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ATM_1;
 using NUnit.Framework;
 
@@ -19,12 +16,14 @@ namespace AMT.Test.Unit.Airspace
         }
 
         [TestCase(70000, 90000, 70000, 90000, 500, 20000)]
-        public void TestAirspaceConstructor(double minX, double maxX, double minY, double maxY, double lowerBoundary, double upperBoundary)
-        {
-            IAirSpace exceptionSpace = new AirSpace(minX, maxX, minY, maxY, lowerBoundary, upperBoundary);
+        [TestCase(10000, 89999, 10000, 90000, 500, 20000)]
+        [TestCase(10001, 90000, 10000, 90000, 500, 20000)]
+        [TestCase(10000, 90000, 10001, 90000, 500, 20000)]
+        [TestCase(10000, 90000, 10000, 89999, 500, 20000)]
 
-            //Assert.Throws<Exception>(() => exceptionSpace);
-            //Assert.That(() => exceptionSpace, Throws.TypeOf<Exception>());
+        public void TestAirspaceConstructor_InputsNotValid_ExceptionIsThrown(double minX, double maxX, double minY, double maxY, double lowerBoundary, double upperBoundary)
+        {
+            Assert.That(() => new AirSpace(minX, maxX, minY, maxY, lowerBoundary, upperBoundary), Throws.Exception);
         }
 
         [TestCase(90000)]
