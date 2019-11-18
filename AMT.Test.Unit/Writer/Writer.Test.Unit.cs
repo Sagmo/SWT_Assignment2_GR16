@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using ATM_1;
-using NSubstitute;
 using NUnit.Framework;
 
 namespace AMT.Test.Unit.Writer

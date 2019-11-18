@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using AMT.Test.Unit.Fakes;
-using AMT.Test.Unit.Seperation;
 using ATM_1;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,7 +9,7 @@ namespace AMT.Test.Unit.LoggerTest
     [TestFixture]
     class LogTest
     {
-        private Log _uut;
+        private ILog _uut;
         private IWriter _writer;
         private ISeperation _seperation;
         private IDecoder _decoder;

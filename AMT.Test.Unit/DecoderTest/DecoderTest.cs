@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using AMT.Test.Unit.Fakes;
 using ATM_1;
 using NSubstitute;
@@ -13,7 +12,7 @@ namespace AMT.Test.Unit.DecoderTest
     public class DecoderTest
     {
         private IDecoder _uut;
-        private IObjStruct _ObjStruct;
+        private IObjStruct _objStruct;
         private ITransponderReceiver _receiver;
 
         private bool _eventHandled;
@@ -24,10 +23,10 @@ namespace AMT.Test.Unit.DecoderTest
         {
             _eventHandled = false;
 
-            _ObjStruct = new FakeFlightObj();
+            _objStruct = new FakeFlightObj();
             _receiver = Substitute.For<ITransponderReceiver>();
 
-            _uut = new Decoder(_ObjStruct, _receiver);
+            _uut = new Decoder(_objStruct, _receiver);
 
             _receiver.TransponderDataReady += (sender, args) => _eventHandled = true; 
             _receiver.TransponderDataReady += (sender, args) => _transponderDataEventArgs = args; 
@@ -74,7 +73,7 @@ namespace AMT.Test.Unit.DecoderTest
             var test = new List<string>(input.Split(';'));
 
             _receiver.TransponderDataReady += Raise.EventWith(new RawTransponderDataEventArgs(data));
-            Assert.That(_ObjStruct.getlist().Find(x => x.Tag == test[0]).Tag, Is.EqualTo(test[0]));
+            Assert.That(_objStruct.getlist().Find(x => x.Tag == test[0]).Tag, Is.EqualTo(test[0]));
         }
 
         [TestCase("ABC123", "1", "2", "3", "2019")]

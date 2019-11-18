@@ -1,5 +1,4 @@
-﻿using System;
-using ATM_1;
+﻿using ATM_1;
 using NUnit.Framework;
 
 

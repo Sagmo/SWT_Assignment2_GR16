@@ -6,25 +6,25 @@ using ATM_1;
 
 namespace ATM_1
 {
-    public class Log
+    public class Log : ILog
     {
-        private IWriter writer;
+        private readonly IWriter _writer;
         public Log(ISeperation seperation, IWriter writer, IDecoder decoder)
         {
             seperation.SeperationWarningEvent += HandleSeperationWarning;
             decoder.DecodeEvent += HandleDecodeEvent;
-            this.writer = writer;
+            this._writer = writer;
         }
 
         private void HandleDecodeEvent(object sender, DecoderEventArgs e)
         {
-            writer.WriteConsole(e.FlightObjectStruct.getlist());
+            _writer.WriteConsole(e.FlightObjectStruct.getlist());
         }
 
         private void HandleSeperationWarning(object sender, SeperationWarningEventArgs e)
         {
-            writer.WriteSeperationConsole(e.SeperationList);
-            writer.WriteFile(e.SeperationList);
+            _writer.WriteSeperationConsole(e.SeperationList);
+            _writer.WriteFile(e.SeperationList);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace AMT.Test.Unit.Seperation
     [TestFixture]
     public class SeperationTest
     {
-        private ATM_1.Seperation _uut;
+        private ISeperation _uut;
         private IDecoder _decoder;
         private DecoderEventArgs _decoderEventArgs;
         private SeperationWarningEventArgs _seperationWarningEventArgs;
