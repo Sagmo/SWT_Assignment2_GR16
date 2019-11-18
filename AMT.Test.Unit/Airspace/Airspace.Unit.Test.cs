@@ -11,39 +11,56 @@ namespace AMT.Test.Unit.Airspace
     [TestFixture]
     public class AirspaceTest
     {
-        private IAirSpace _airSpace;
+        private IAirSpace _uut;
         [SetUp]
         public void Setup()
         {
-            _airSpace = new AirSpace(10000,90000,10000,90000,500,20000);
+            _uut = new AirSpace(10000,90000,10000,90000,500,20000);
         }
 
-        [Test]
-        public void TestAirspaceGetX()
+        [TestCase(70000, 90000, 70000, 90000, 500, 20000)]
+        public void TestAirspaceConstructor(double minX, double maxX, double minY, double maxY, double lowerBoundary, double upperBoundary)
         {
-            var x = _airSpace._MaxX;
-            Assert.That(_airSpace._MaxX,Is.EqualTo(x));
+            IAirSpace exceptionSpace = new AirSpace(minX, maxX, minY, maxY, lowerBoundary, upperBoundary);
+
+            //Assert.Throws<Exception>(() => exceptionSpace);
+            //Assert.That(() => exceptionSpace, Throws.TypeOf<Exception>());
         }
 
-        [Test]
-        public void TestAirspaceGetY()
+        [TestCase(90000)]
+        public void TestAirspaceMaxX(double maxX)
         {
-            var y = _airSpace._MaxY;
-            Assert.That(_airSpace._MaxX,Is.EqualTo(y));
+            Assert.That(_uut._MaxX,Is.EqualTo(maxX));
         }
 
-        [Test]
-        public void TestAirspaceGetLowerBoundary()
+        [TestCase(90000)]
+        public void TestAirspaceMaxY(double maxY)
         {
-            var lowerboundary = _airSpace._LowerBoundary;
-            Assert.That(_airSpace._LowerBoundary, Is.EqualTo(lowerboundary));
+            Assert.That(_uut._MaxX,Is.EqualTo(maxY));
         }
 
-        [Test]
-        public void TestAirspaceGetUpperBoundary()
+        [TestCase(10000)]
+        public void TestAirspaceMinX(double minX)
         {
-            var upperboundary = _airSpace._UpperBoundary;
-            Assert.That(_airSpace._UpperBoundary, Is.EqualTo(upperboundary));
+            Assert.That(_uut._MinX, Is.EqualTo(minX));
+        }
+
+        [TestCase(10000)]
+        public void TestAirspaceMinY(double minY)
+        {
+            Assert.That(_uut._MinY, Is.EqualTo(minY));
+        }
+
+        [TestCase(500)]
+        public void TestAirspaceGetLowerBoundary(double lowerBound)
+        {
+            Assert.That(_uut._LowerBoundary, Is.EqualTo(lowerBound));
+        }
+
+        [TestCase(20000)]
+        public void TestAirspaceGetUpperBoundary(double upperBound)
+        {
+            Assert.That(_uut._UpperBoundary, Is.EqualTo(upperBound));
         }
     }
 }

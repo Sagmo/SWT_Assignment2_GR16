@@ -12,7 +12,7 @@ namespace ATM_1
             _MinY = minY;
             _MaxY = maxY;
 
-            if ( ((_MaxX - _MinX) < 8000) || ((_MaxY - _MinY) < 8000) )
+            if ( ((_MaxX - _MinX) < 80000) || ((_MaxY - _MinY) < 80000) )
                 throw new Exception("Too Small Airspace");
 
             _LowerBoundary = lowerBoundary;
