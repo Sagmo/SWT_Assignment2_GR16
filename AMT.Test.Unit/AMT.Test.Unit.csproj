@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Airspace\Airspace.Unit.Test.cs" />
     <Compile Include="DecoderTest\DecoderTest.cs" />
+    <Compile Include="Fakes\FakeFlightObj.Test.cs" />
     <Compile Include="LoggerTest\LogTest.cs" />
     <Compile Include="ObjectStructureTest\ObjectStructureTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
