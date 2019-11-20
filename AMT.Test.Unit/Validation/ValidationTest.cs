@@ -69,6 +69,10 @@ namespace AMT.Test.Unit.Validation
         [TestCase("ATR423", "90000", "90000", "20001", "2018051563055")]
         [TestCase("ATR423", "50000", "50000", "499", "2018051563055")]
         [TestCase("ATR423", "50000", "50000", "20001", "2018051563055")]
+        [TestCase("ATR423", "-87654", "32109", "5678", "2018051563055")]
+        [TestCase("ATR423", "-87654", "-32109", "5678", "2018051563055")]
+        [TestCase("ATR423", "-87654", "-32109", "-5678", "2018051563055")]
+        [TestCase("ATR423", "87654", "32109", "-5678", "2018051563055")]
         public void ValidateTrackTest_Failed(string tag, string xCoo, string yCoo, string aptitude, string timeStamp)
         {
             ITrack track = new ATM_1.Track(tag, xCoo, yCoo, aptitude, timeStamp);

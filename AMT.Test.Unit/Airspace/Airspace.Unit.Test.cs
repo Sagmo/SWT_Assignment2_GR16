@@ -19,6 +19,14 @@ namespace AMT.Test.Unit.Airspace
         [TestCase(10001, 90000, 10000, 90000, 500, 20000)]
         [TestCase(10000, 90000, 10001, 90000, 500, 20000)]
         [TestCase(10000, 90000, 10000, 89999, 500, 20000)]
+        [TestCase(-10000, -90000, -10000, -90000, -500, -20000)]
+        [TestCase(-10000, 90000, 10000, 90000, 500, 20000)]
+        [TestCase(10000, -90000, 10000, 90000, 500, 20000)]
+        [TestCase(10000, 90000, -10000, 90000, 500, 20000)]
+        [TestCase(10000, 90000, 10000, -90000, 500, 20000)]
+        [TestCase(10000, 90000, 10000, 90000, -500, 20000)]
+        [TestCase(10000, 90000, 10000, 90000, 500, -20000)]
+        [TestCase(10000, 90000, 10000, 90000, -500, -20000)]
 
         public void TestAirspaceConstructor_InputsNotValid_ExceptionIsThrown(double minX, double maxX, double minY, double maxY, double lowerBoundary, double upperBoundary)
         {
