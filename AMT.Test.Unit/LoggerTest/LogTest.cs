@@ -2,6 +2,7 @@
 using AMT.Test.Unit.Fakes;
 using ATM_1;
 using NSubstitute;
+using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
 
 namespace AMT.Test.Unit.LoggerTest
@@ -21,7 +22,7 @@ namespace AMT.Test.Unit.LoggerTest
         private DecoderEventArgs _decoderEventArgs;
         private SeperationWarningEventArgs _seperationWarningEventArgs;
 
-
+        
         [SetUp]
         public void Setup()
         {
@@ -54,6 +55,19 @@ namespace AMT.Test.Unit.LoggerTest
         }
 
         [Test]
+        public void WriteConsole_FunctionCalledOnceWithList()
+        {
+            ITrack track1 = new ATM_1.Track("1", "2", "3", "600", "5");
+            ITrack track2 = new ATM_1.Track("1", "2", "3", "600", "5");
+
+            _iOjbStruct.Attach(track1);
+            _iOjbStruct.Attach(track2);
+
+            _decoder.DecodeEvent += Raise.EventWith(new DecoderEventArgs { FlightObjectStruct = _iOjbStruct });
+            _writer.Received(1).WriteConsole(_iOjbStruct.getlist());
+        }
+
+        [Test]
         public void SeperationEvent_SeperationReceived_EventHandled()
         {
             ITrack track1 = new ATM_1.Track("1", "2", "3", "600", "5");
@@ -66,7 +80,30 @@ namespace AMT.Test.Unit.LoggerTest
             Assert.That(_seperationWarningBool, Is.True);
         }
 
-        
+        [Test]
+        public void WriteSeperationConsole_FunctionIsCalledOnceWithList()
+        {
+            ITrack track1 = new ATM_1.Track("1", "2", "3", "600", "5");
+            ITrack track2 = new ATM_1.Track("1", "2", "3", "600", "5");
+
+            var flightSepList = new List<ITrack>() { track1, track2 };
+
+            _seperation.SeperationWarningEvent += Raise.EventWith(new SeperationWarningEventArgs { SeperationList = flightSepList });
+            _writer.Received(1).WriteSeperationConsole(flightSepList);
+        }
+
+        [Test]
+        public void WriteFile_FunctionIsCalledOnceWithList()
+        {
+            ITrack track1 = new ATM_1.Track("1", "2", "3", "600", "5");
+            ITrack track2 = new ATM_1.Track("1", "2", "3", "600", "5");
+
+            var flightSepList = new List<ITrack>() { track1, track2 };
+
+            _seperation.SeperationWarningEvent += Raise.EventWith(new SeperationWarningEventArgs { SeperationList = flightSepList });
+            _writer.Received(1).WriteFile(flightSepList);
+        }
+
         [Test]
         public void DecoderDecodeEvent_ListWritten_EventHandled()
         {
